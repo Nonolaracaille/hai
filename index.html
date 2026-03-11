@@ -4,588 +4,410 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prométheus — Devour Your Competition</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- ═══ DISCORD / OPEN GRAPH EMBED ═══ -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://prometheus.lol">
+<meta property="og:site_name" content="Prométheus">
+<meta property="og:title" content="Prométheus — Devour Your Competition">
+<meta property="og:description" content="🚀 La plateforme Discord la plus puissante — boosts instantanés, modération avancée, automation. 100% gratuit. 10,000+ utilisateurs.">
+<meta property="og:image" content="https://prometheus.lol/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:color" content="#e8291c">
+
+<!-- Twitter Card (also used by some embeds) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prométheus — Devour Your Competition">
+<meta name="twitter:description" content="🚀 Boosts instantanés · Modération avancée · Automation · 100% gratuit">
+<meta name="twitter:image" content="https://prometheus.lol/preview.png">
+
+<!-- Discord specific -->
+<meta name="theme-color" content="#e8291c">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --red: #e8291c;
-    --red-dim: #c0221700;
-    --red-glow: rgba(232,41,28,0.35);
-    --red-faint: rgba(232,41,28,0.08);
-    --bg: #0a0a0a;
-    --bg2: #111111;
-    --bg3: #161616;
-    --border: rgba(255,255,255,0.07);
-    --text: #f0f0f0;
-    --muted: #888;
-  }
+:root {
+  --red: #e8291c;
+  --red-glow: rgba(232,41,28,0.35);
+  --red-faint: rgba(232,41,28,0.08);
+  --bg: #0a0a0a;
+  --bg2: #111111;
+  --bg3: #161616;
+  --bg4: #1a1a1a;
+  --border: rgba(255,255,255,0.07);
+  --text: #f0f0f0;
+  --muted: #777;
+  --muted2: #555;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:'Syne',sans-serif; overflow-x:hidden; }
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--red); border-radius:2px; }
 
-  * { margin:0; padding:0; box-sizing:border-box; }
+/* ═══ LANDING PAGE ═══ */
+#landing { display:block; }
 
-  html { scroll-behavior: smooth; }
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 48px;
+  background:rgba(10,10,10,0.9); backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo { display:flex; align-items:center; gap:10px; font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:2px; }
+.logo-icon { width:34px; height:34px; background:var(--red); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:1rem; font-weight:900; box-shadow:0 0 16px var(--red-glow); }
+.nav-links { display:flex; gap:28px; }
+.nav-links a { color:var(--muted); text-decoration:none; font-size:0.85rem; font-weight:600; letter-spacing:0.5px; transition:color .2s; }
+.nav-links a:hover { color:#fff; }
+.nav-actions { display:flex; align-items:center; gap:14px; }
+.btn-ghost { background:none; border:none; color:var(--muted); font-family:'Syne',sans-serif; font-size:0.85rem; font-weight:600; cursor:pointer; transition:color .2s; }
+.btn-ghost:hover { color:#fff; }
+.btn-red { background:var(--red); color:#fff; border:none; padding:9px 20px; border-radius:50px; font-family:'Syne',sans-serif; font-size:0.85rem; font-weight:700; cursor:pointer; box-shadow:0 0 16px var(--red-glow); transition:all .2s; }
+.btn-red:hover { transform:scale(1.04); }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Syne', sans-serif;
-    overflow-x: hidden;
-  }
+/* HERO */
+#hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:120px 24px 80px; position:relative; overflow:hidden; }
+.hero-glow { position:absolute; top:20%; left:50%; transform:translateX(-50%); width:700px; height:500px; background:radial-gradient(ellipse, rgba(232,41,28,0.15) 0%, transparent 70%); pointer-events:none; }
+.hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size:60px 60px; mask-image:radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 80%); pointer-events:none; }
+.status-pill { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:6px 14px; font-size:0.78rem; color:var(--muted); margin-bottom:28px; font-family:'JetBrains Mono',monospace; }
+.status-dot { width:7px; height:7px; background:#22c55e; border-radius:50%; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.5)} 50%{box-shadow:0 0 0 6px rgba(34,197,94,0)} }
+.hero-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(4rem,10vw,7.5rem); line-height:0.95; letter-spacing:2px; }
+.hero-title .accent { color:var(--red); text-shadow:0 0 40px rgba(232,41,28,0.5); }
+.hero-sub { max-width:520px; color:var(--muted); font-size:1rem; line-height:1.7; margin:22px auto 36px; }
+.hero-actions { display:flex; gap:12px; justify-content:center; }
+.btn-red-lg { background:var(--red); color:#fff; border:none; padding:13px 26px; border-radius:50px; font-family:'Syne',sans-serif; font-size:0.9rem; font-weight:700; cursor:pointer; box-shadow:0 0 28px var(--red-glow); transition:all .2s; display:flex; align-items:center; gap:8px; }
+.btn-red-lg:hover { transform:scale(1.04); box-shadow:0 0 40px var(--red-glow); }
+.btn-outline { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); color:#fff; padding:13px 26px; border-radius:50px; font-family:'Syne',sans-serif; font-size:0.9rem; font-weight:700; cursor:pointer; transition:all .2s; }
+.btn-outline:hover { background:rgba(255,255,255,0.1); }
+.hero-badges { display:flex; gap:22px; justify-content:center; margin-top:36px; font-size:0.83rem; color:var(--muted); }
+.hero-badges span { display:flex; align-items:center; gap:6px; }
+.check-green { color:#22c55e; }
 
-  /* ─── SCROLLBAR ─── */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+/* STATS */
+.stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; padding:0 48px 80px; }
+.stat-card { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:26px 20px; text-align:center; transition:border-color .3s, transform .3s; }
+.stat-card:hover { border-color:rgba(232,41,28,0.4); transform:translateY(-3px); }
+.stat-num { font-family:'Bebas Neue',sans-serif; font-size:2.4rem; color:var(--red); letter-spacing:1px; }
+.stat-label { color:var(--muted); font-size:0.8rem; margin-top:4px; }
 
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 48px;
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    display: flex; align-items: center; gap: 10px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.6rem; letter-spacing: 2px; color: #fff;
-  }
-  .logo-icon {
-    width: 38px; height: 38px; background: var(--red);
-    border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; font-weight: 900; font-family: 'Bebas Neue', sans-serif;
-    box-shadow: 0 0 18px var(--red-glow);
-  }
-  .nav-links { display: flex; gap: 32px; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none; font-size: 0.88rem;
-    font-weight: 600; letter-spacing: 0.5px; transition: color .2s;
-  }
-  .nav-links a:hover { color: #fff; }
-  .nav-actions { display: flex; align-items: center; gap: 16px; }
-  .btn-ghost {
-    background: none; border: none; color: var(--muted);
-    font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 600;
-    cursor: pointer; transition: color .2s;
-  }
-  .btn-ghost:hover { color: #fff; }
-  .btn-red {
-    background: var(--red); color: #fff; border: none;
-    padding: 10px 22px; border-radius: 50px; font-family: 'Syne', sans-serif;
-    font-size: 0.88rem; font-weight: 700; cursor: pointer;
-    box-shadow: 0 0 18px var(--red-glow); transition: all .2s;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .btn-red:hover { transform: scale(1.04); box-shadow: 0 0 28px var(--red-glow); }
+/* SECTIONS */
+section.landing-section { padding:80px 48px; }
+.section-label { text-align:center; font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--red); letter-spacing:3px; text-transform:uppercase; margin-bottom:10px; }
+.section-title { text-align:center; font-family:'Bebas Neue',sans-serif; font-size:clamp(2.2rem,4vw,3.5rem); letter-spacing:1px; }
+.section-title .accent { color:var(--red); }
+.section-divider { width:50px; height:2px; background:var(--red); margin:16px auto 50px; box-shadow:0 0 8px var(--red-glow); }
+.section-sub { text-align:center; color:var(--muted); max-width:500px; margin:12px auto 0; line-height:1.7; font-size:0.92rem; }
 
-  /* ─── HERO ─── */
-  #hero {
-    min-height: 100vh; display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center; padding: 120px 24px 80px;
-    position: relative; overflow: hidden;
-  }
-  .hero-glow {
-    position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
-    width: 600px; height: 400px;
-    background: radial-gradient(ellipse, rgba(232,41,28,0.18) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 80%);
-    pointer-events: none;
-  }
-  .status-pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 50px; padding: 7px 16px; font-size: 0.8rem;
-    color: var(--muted); margin-bottom: 32px; font-family: 'JetBrains Mono', monospace;
-  }
-  .status-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); } 50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); } }
-  
-  .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4rem, 10vw, 8rem);
-    line-height: 0.95; letter-spacing: 2px;
-    position: relative; z-index: 1;
-  }
-  .hero-title .accent { color: var(--red); text-shadow: 0 0 40px rgba(232,41,28,0.5); }
-  .hero-sub {
-    max-width: 540px; color: var(--muted); font-size: 1.05rem;
-    line-height: 1.7; margin: 24px auto 40px; position: relative; z-index: 1;
-  }
-  .hero-actions { display: flex; gap: 14px; justify-content: center; position: relative; z-index: 1; }
-  .btn-outline {
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);
-    color: #fff; padding: 13px 28px; border-radius: 50px;
-    font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700;
-    cursor: pointer; transition: all .2s;
-  }
-  .btn-outline:hover { background: rgba(255,255,255,0.1); }
-  .btn-red-lg {
-    background: var(--red); color: #fff; border: none;
-    padding: 13px 28px; border-radius: 50px;
-    font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700;
-    cursor: pointer; box-shadow: 0 0 28px var(--red-glow); transition: all .2s;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .btn-red-lg:hover { transform: scale(1.04); box-shadow: 0 0 40px var(--red-glow); }
-  
-  .hero-badges {
-    display: flex; gap: 24px; justify-content: center; margin-top: 40px;
-    font-size: 0.85rem; color: var(--muted); position: relative; z-index: 1;
-  }
-  .hero-badges span { display: flex; align-items: center; gap: 6px; }
-  .check { color: #22c55e; font-size: 1.1rem; }
+/* FEATURES */
+.features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.feat-card { background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:28px; transition:border-color .3s, transform .3s; position:relative; overflow:hidden; }
+.feat-card:hover { border-color:rgba(232,41,28,0.35); transform:translateY(-4px); }
+.feat-icon { width:46px; height:46px; border-radius:11px; background:rgba(232,41,28,0.1); border:1px solid rgba(232,41,28,0.18); display:flex; align-items:center; justify-content:center; font-size:1.1rem; margin-bottom:18px; }
+.feat-card h3 { font-size:1rem; font-weight:700; margin-bottom:8px; }
+.feat-card p { color:var(--muted); font-size:0.86rem; line-height:1.65; }
+.feat-badge { margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--red); display:flex; align-items:center; gap:6px; }
+.feat-dot { width:5px; height:5px; background:#22c55e; border-radius:50%; }
 
-  /* ─── STATS ─── */
-  .stats-row {
-    display: grid; grid-template-columns: repeat(4,1fr); gap: 16px;
-    padding: 0 48px 80px; position: relative; z-index: 1;
-  }
-  .stat-card {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 16px; padding: 28px 24px; text-align: center;
-    transition: border-color .3s, transform .3s;
-  }
-  .stat-card:hover { border-color: rgba(232,41,28,0.4); transform: translateY(-3px); }
-  .stat-icon { font-size: 1.2rem; margin-bottom: 12px; opacity: 0.7; }
-  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; color: var(--red); letter-spacing: 1px; }
-  .stat-label { color: var(--muted); font-size: 0.82rem; margin-top: 4px; }
+/* TESTIMONIALS */
+.testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.testi-card { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:26px; transition:border-color .3s, transform .3s; }
+.testi-card:hover { border-color:rgba(232,41,28,0.3); transform:translateY(-3px); }
+.testi-stars { color:var(--red); font-size:0.83rem; margin-bottom:12px; }
+.testi-text { font-size:0.88rem; color:var(--muted); line-height:1.7; margin-bottom:18px; font-style:italic; }
+.testi-author { display:flex; align-items:center; gap:10px; }
+.testi-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem; flex-shrink:0; }
+.testi-name { font-weight:700; font-size:0.86rem; }
+.testi-role { color:var(--muted); font-size:0.73rem; margin-top:2px; }
 
-  /* ─── SECTION SHARED ─── */
-  section { padding: 100px 48px; }
-  .section-label {
-    text-align: center; font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem; color: var(--red); letter-spacing: 3px;
-    text-transform: uppercase; margin-bottom: 12px;
-  }
-  .section-title {
-    text-align: center; font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: 1px; line-height: 1;
-  }
-  .section-title .accent { color: var(--red); }
-  .section-sub {
-    text-align: center; color: var(--muted); max-width: 520px;
-    margin: 16px auto 0; line-height: 1.7; font-size: 0.95rem;
-  }
-  .section-divider {
-    width: 60px; height: 2px; background: var(--red);
-    margin: 20px auto 60px; box-shadow: 0 0 10px var(--red-glow);
-  }
+/* FAQ */
+.faq-list { max-width:700px; margin:0 auto; }
+.faq-item { border:1px solid var(--border); border-radius:11px; margin-bottom:9px; overflow:hidden; transition:border-color .2s; }
+.faq-item:hover { border-color:rgba(232,41,28,0.3); }
+.faq-q { padding:18px 22px; font-weight:700; cursor:pointer; display:flex; justify-content:space-between; align-items:center; user-select:none; font-size:0.92rem; }
+.faq-arrow { color:var(--red); font-size:1rem; transition:transform .3s; }
+.faq-item.open .faq-arrow { transform:rotate(180deg); }
+.faq-a { padding:0 22px; max-height:0; overflow:hidden; transition:max-height .3s ease, padding .3s; color:var(--muted); font-size:0.87rem; line-height:1.7; }
+.faq-item.open .faq-a { max-height:200px; padding:0 22px 18px; }
 
-  /* ─── FEATURES ─── */
-  #features { background: var(--bg); }
-  .features-grid {
-    display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 0;
-  }
-  .feat-card {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 18px; padding: 32px;
-    transition: border-color .3s, transform .3s;
-    position: relative; overflow: hidden;
-  }
-  .feat-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(232,41,28,0.5), transparent);
-    opacity: 0; transition: opacity .3s;
-  }
-  .feat-card:hover { border-color: rgba(232,41,28,0.35); transform: translateY(-4px); }
-  .feat-card:hover::before { opacity: 1; }
-  .feat-icon {
-    width: 50px; height: 50px; border-radius: 12px;
-    background: rgba(232,41,28,0.12); border: 1px solid rgba(232,41,28,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; margin-bottom: 20px; color: var(--red);
-  }
-  .feat-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
-  .feat-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
-  .feat-badge {
-    margin-top: 18px; font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem; color: var(--red); display: flex; align-items: center; gap: 6px;
-  }
-  .feat-dot { width: 5px; height: 5px; background: #22c55e; border-radius: 50%; }
+/* CTA */
+#cta { text-align:center; padding:100px 48px; position:relative; overflow:hidden; background:var(--bg); }
+.cta-glow { position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 50% 50%, rgba(232,41,28,0.07), transparent); pointer-events:none; }
+.cta-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.8rem,5.5vw,5rem); line-height:1; margin-bottom:18px; }
 
-  /* ─── DASHBOARD SECTION ─── */
-  #dashboard {
-    background: var(--bg2);
-    position: relative; overflow: hidden;
-  }
-  .dashboard-container {
-    display: flex; gap: 60px; align-items: center; margin-top: 60px;
-  }
-  .dashboard-info { flex: 0 0 360px; }
-  .dashboard-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-bottom: 16px; }
-  .dashboard-info p { color: var(--muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 24px; }
-  .dash-feature { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
-  .dash-dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
-  .dash-feature-text { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
-  .dash-feature-text strong { color: #fff; }
+/* FOOTER */
+footer { background:var(--bg); border-top:1px solid var(--border); padding:50px 48px 28px; }
+.footer-top { display:flex; gap:50px; margin-bottom:40px; }
+.footer-brand { flex:0 0 240px; }
+.footer-brand p { color:var(--muted); font-size:0.85rem; line-height:1.7; margin-top:12px; }
+.footer-col h4 { font-size:0.82rem; font-weight:700; margin-bottom:14px; letter-spacing:1px; color:#aaa; }
+.footer-col a { display:block; color:var(--muted); text-decoration:none; font-size:0.83rem; margin-bottom:9px; transition:color .2s; }
+.footer-col a:hover { color:var(--red); }
+.footer-bottom { border-top:1px solid var(--border); padding-top:22px; display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:0.78rem; }
 
-  /* ─── MOCK DASHBOARD (tilted, image 3 style) ─── */
-  .dashboard-mock-wrapper {
-    flex: 1; perspective: 1200px;
-  }
-  .dashboard-mock {
-    background: #111827;
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.08);
-    overflow: hidden;
-    transform: rotateY(-12deg) rotateX(4deg) rotate(-2deg);
-    box-shadow:
-      -20px 20px 60px rgba(0,0,0,0.8),
-      0 0 0 1px rgba(255,255,255,0.05),
-      inset 0 1px 0 rgba(255,255,255,0.08);
-    transition: transform .4s ease;
-  }
-  .dashboard-mock:hover {
-    transform: rotateY(-6deg) rotateX(2deg) rotate(-1deg);
-  }
-  .mock-titlebar {
-    background: #0d1117; padding: 10px 16px;
-    display: flex; align-items: center; gap: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .mock-dots { display: flex; gap: 6px; }
-  .mock-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .mock-dot.red { background: var(--red); }
-  .mock-dot.yellow { background: #f59e0b; }
-  .mock-dot.green { background: #22c55e; }
-  .mock-app-name {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
-    color: var(--muted); margin-left: 8px; display: flex; align-items: center; gap: 6px;
-  }
-  .mock-app-name .logo-n {
-    width: 18px; height: 18px; background: var(--red);
-    border-radius: 4px; display: flex; align-items: center; justify-content: center;
-    font-size: 0.6rem; font-weight: 900; color: #fff;
-  }
-  .mock-body { display: flex; height: 360px; }
-  .mock-sidebar {
-    width: 50px; background: #0d1117;
-    border-right: 1px solid rgba(255,255,255,0.05);
-    display: flex; flex-direction: column; align-items: center;
-    padding: 16px 0; gap: 16px;
-  }
-  .mock-sidebar-icon {
-    width: 28px; height: 28px; background: rgba(255,255,255,0.05);
-    border-radius: 6px; display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem; color: var(--muted);
-  }
-  .mock-sidebar-icon.active { background: rgba(232,41,28,0.2); color: var(--red); }
-  .mock-main { flex: 1; padding: 20px; overflow: hidden; }
-  .mock-greeting { font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; }
-  .mock-greeting span { color: var(--red); }
-  .mock-user-card {
-    background: #1a2030; border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 12px; padding: 16px; display: flex; gap: 14px;
-    align-items: flex-start; margin-bottom: 14px;
-  }
-  .mock-avatar {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--red), #7c3aed);
-    flex-shrink: 0;
-  }
-  .mock-user-info { flex: 1; }
-  .mock-username { font-weight: 700; font-size: 0.88rem; }
-  .mock-handle { color: var(--muted); font-size: 0.75rem; margin-top: 2px; }
-  .mock-nitro { color: var(--red); font-size: 0.72rem; margin-top: 6px; font-family: 'JetBrains Mono', monospace; }
-  .mock-stats-row { display: flex; gap: 10px; margin-top: 12px; }
-  .mock-stat {
-    background: #1a2030; border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 10px; padding: 10px 14px; flex: 1; text-align: center;
-  }
-  .mock-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--red); }
-  .mock-stat-label { font-size: 0.65rem; color: var(--muted); }
-  .mock-info-row { display: flex; gap: 10px; margin-top: 10px; }
-  .mock-info-card {
-    background: #1a2030; border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 10px; padding: 10px 14px; flex: 1;
-  }
-  .mock-info-label { font-size: 0.65rem; color: var(--muted); display: flex; align-items: center; gap: 4px; }
-  .mock-info-val { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 600; margin-top: 4px; }
-  .mock-toggle-row { display: flex; gap: 10px; margin-top: 10px; }
-  .mock-toggle-card {
-    background: #1a2030; border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 10px; padding: 10px 14px; flex: 1;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .mock-toggle-label { font-size: 0.72rem; color: var(--muted); }
-  .mock-toggle {
-    width: 32px; height: 18px; background: var(--red); border-radius: 50px; position: relative;
-  }
-  .mock-toggle::after {
-    content: ''; position: absolute; top: 2px; right: 2px;
-    width: 14px; height: 14px; background: #fff; border-radius: 50%;
-  }
-  .mock-right {
-    width: 220px; background: #0f1520;
-    border-left: 1px solid rgba(255,255,255,0.05); padding: 20px;
-  }
-  .mock-notif-title {
-    font-size: 0.78rem; font-weight: 700; color: var(--muted);
-    margin-bottom: 16px; display: flex; align-items: center; gap: 6px;
-  }
-  .mock-notif {
-    background: #1a2030; border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 10px; padding: 12px;
-  }
-  .mock-notif-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-  .mock-notif-icon {
-    width: 24px; height: 24px; background: #22c55e; border-radius: 6px;
-    display: flex; align-items: center; justify-content: center; font-size: 0.65rem;
-  }
-  .mock-notif-text { font-size: 0.78rem; font-weight: 600; }
-  .mock-notif-time { font-size: 0.68rem; color: var(--muted); }
-  .mock-notif-badge {
-    background: rgba(232,41,28,0.15); border: 1px solid rgba(232,41,28,0.3);
-    color: var(--red); font-size: 0.65rem; padding: 2px 8px; border-radius: 50px;
-    display: inline-block; margin-top: 6px; font-family: 'JetBrains Mono', monospace;
-  }
+/* FADE ANIMATIONS */
+.fade-up { opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .6s ease; }
+.fade-up.visible { opacity:1; transform:translateY(0); }
 
-  /* ─── TERMINAL SECTION ─── */
-  #terminal-section {
-    background: var(--bg); position: relative; overflow: hidden;
-  }
-  .terminal-glow {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 500px; height: 300px;
-    background: radial-gradient(ellipse, rgba(232,41,28,0.1) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .terminal-wrapper {
-    max-width: 800px; margin: 60px auto 0;
-    perspective: 1000px;
-  }
-  .terminal {
-    background: #0d0d0d;
-    border: 1px solid rgba(232,41,28,0.3);
-    border-radius: 14px; overflow: hidden;
-    transform: rotate(-1.5deg);
-    box-shadow:
-      0 0 0 1px rgba(232,41,28,0.1),
-      0 0 60px rgba(232,41,28,0.15),
-      20px 20px 60px rgba(0,0,0,0.8);
-  }
-  .terminal-bar {
-    background: #141414; padding: 10px 16px;
-    display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid rgba(232,41,28,0.2);
-  }
-  .terminal-title { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--red); }
-  .terminal-body { padding: 24px 28px; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
-  .t-line { margin-bottom: 6px; }
-  .t-cmd { color: var(--red); }
-  .t-output { color: #666; padding-left: 16px; }
-  .t-success { color: #22c55e; }
-  .t-info { color: #60a5fa; }
-  .t-prompt { color: var(--red); }
-  .t-cursor { display: inline-block; width: 8px; height: 14px; background: var(--red); animation: blink 1s infinite; vertical-align: middle; margin-left: 2px; }
-  @keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+/* ═══ MODAL ═══ */
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.88); backdrop-filter:blur(10px); z-index:300; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .3s; }
+.modal-overlay.active { opacity:1; pointer-events:all; }
+.modal { background:var(--bg2); border:1px solid var(--border); border-radius:20px; padding:38px; width:400px; max-width:90vw; transform:translateY(20px) scale(0.97); transition:transform .3s; position:relative; }
+.modal-overlay.active .modal { transform:translateY(0) scale(1); }
+.modal-close { position:absolute; top:14px; right:16px; background:none; border:none; color:var(--muted); font-size:1.4rem; cursor:pointer; line-height:1; }
+.modal-close:hover { color:var(--red); }
+.modal h2 { font-family:'Bebas Neue',sans-serif; font-size:1.9rem; margin-bottom:5px; }
+.modal-desc { color:var(--muted); font-size:0.86rem; margin-bottom:26px; }
+.modal-tabs { display:flex; gap:0; margin-bottom:22px; background:var(--bg3); border-radius:9px; padding:3px; }
+.modal-tab { flex:1; padding:8px; text-align:center; font-size:0.83rem; font-weight:700; cursor:pointer; border-radius:7px; transition:all .2s; color:var(--muted); border:none; background:none; font-family:'Syne',sans-serif; }
+.modal-tab.active { background:var(--red); color:#fff; }
+.form-group { margin-bottom:14px; }
+.form-group label { display:block; font-size:0.76rem; font-weight:700; margin-bottom:5px; color:var(--muted); letter-spacing:0.5px; }
+.form-group input { width:100%; padding:11px 14px; background:var(--bg3); border:1px solid var(--border); border-radius:9px; color:#fff; font-family:'Syne',sans-serif; font-size:0.88rem; outline:none; transition:border-color .2s; }
+.form-group input:focus { border-color:var(--red); }
+.form-group input::placeholder { color:#444; }
+.modal-footer { text-align:center; margin-top:14px; font-size:0.78rem; color:var(--muted); }
+.modal-footer a { color:var(--red); cursor:pointer; }
+.modal-success { display:none; text-align:center; padding:16px 0; }
+.modal-success .s-icon { font-size:2.8rem; margin-bottom:14px; }
+.modal-success h3 { font-family:'Bebas Neue',sans-serif; font-size:1.7rem; margin-bottom:8px; }
+.modal-success p { color:var(--muted); font-size:0.88rem; margin-bottom:20px; }
 
-  /* ─── PRICING ─── */
-  #pricing { background: var(--bg2); }
-  .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 0; }
-  .price-card {
-    background: var(--bg3); border: 1px solid var(--border);
-    border-radius: 20px; padding: 36px 28px;
-    transition: all .3s; position: relative; overflow: hidden;
-  }
-  .price-card.featured {
-    border-color: var(--red);
-    background: linear-gradient(135deg, rgba(232,41,28,0.06), var(--bg3));
-    box-shadow: 0 0 40px rgba(232,41,28,0.12);
-  }
-  .price-card:hover { transform: translateY(-6px); }
-  .price-badge {
-    position: absolute; top: 20px; right: 20px;
-    background: var(--red); color: #fff;
-    font-size: 0.7rem; font-weight: 700; padding: 4px 10px; border-radius: 50px;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .plan-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 1px; margin-bottom: 8px; }
-  .plan-price {
-    font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem;
-    color: var(--red); line-height: 1; margin: 16px 0 4px;
-  }
-  .plan-price sup { font-size: 1.5rem; vertical-align: super; }
-  .plan-free { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: #22c55e; line-height: 1; margin: 16px 0 4px; }
-  .plan-period { color: var(--muted); font-size: 0.8rem; margin-bottom: 24px; }
-  .plan-features { list-style: none; margin-bottom: 28px; }
-  .plan-features li {
-    padding: 8px 0; border-bottom: 1px solid var(--border);
-    font-size: 0.88rem; color: var(--muted); display: flex; align-items: center; gap: 8px;
-  }
-  .plan-features li .check { color: #22c55e; font-size: 0.9rem; }
-  .plan-features li .cross { color: #555; font-size: 0.9rem; }
-  .plan-btn {
-    width: 100%; padding: 13px; border-radius: 10px;
-    font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700;
-    cursor: pointer; transition: all .2s;
-  }
-  .plan-btn-outline {
-    background: none; border: 1px solid var(--border); color: var(--muted);
-  }
-  .plan-btn-outline:hover { border-color: var(--red); color: var(--red); }
-  .plan-btn-red { background: var(--red); border: none; color: #fff; box-shadow: 0 0 20px var(--red-glow); }
-  .plan-btn-red:hover { box-shadow: 0 0 30px var(--red-glow); transform: scale(1.02); }
+/* ═══ APP / DASHBOARD ═══ */
+#app { display:none; height:100vh; overflow:hidden; }
 
-  /* ─── TESTIMONIALS ─── */
-  #testimonials { background: var(--bg); }
-  .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-  .testi-card {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 16px; padding: 28px;
-    transition: border-color .3s, transform .3s;
-  }
-  .testi-card:hover { border-color: rgba(232,41,28,0.3); transform: translateY(-3px); }
-  .testi-stars { color: var(--red); font-size: 0.85rem; margin-bottom: 14px; }
-  .testi-text { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
-  .testi-author { display: flex; align-items: center; gap: 12px; }
-  .testi-avatar {
-    width: 38px; height: 38px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 0.85rem; flex-shrink: 0;
-  }
-  .testi-name { font-weight: 700; font-size: 0.88rem; }
-  .testi-role { color: var(--muted); font-size: 0.75rem; margin-top: 2px; }
+/* Boot screen */
+#boot-screen {
+  position:fixed; inset:0; background:var(--bg); z-index:500;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace;
+}
+.boot-logo { font-family:'Bebas Neue',sans-serif; font-size:3rem; color:var(--red); text-shadow:0 0 30px var(--red-glow); margin-bottom:32px; letter-spacing:4px; }
+.boot-terminal { width:520px; max-width:90vw; }
+.boot-line { font-size:0.8rem; margin-bottom:6px; opacity:0; animation:bootLine .1s forwards; }
+.boot-line.red { color:var(--red); }
+.boot-line.green { color:#22c55e; }
+.boot-line.blue { color:#60a5fa; }
+.boot-line.gray { color:#555; }
+@keyframes bootLine { to { opacity:1; } }
+.boot-progress { width:100%; height:2px; background:#1a1a1a; border-radius:2px; margin-top:20px; overflow:hidden; }
+.boot-progress-bar { height:100%; background:var(--red); border-radius:2px; width:0; transition:width .05s linear; box-shadow:0 0 8px var(--red-glow); }
 
-  /* ─── FAQ ─── */
-  #faq { background: var(--bg2); }
-  .faq-list { max-width: 720px; margin: 0 auto; }
-  .faq-item {
-    border: 1px solid var(--border); border-radius: 12px;
-    margin-bottom: 10px; overflow: hidden; transition: border-color .2s;
-  }
-  .faq-item:hover { border-color: rgba(232,41,28,0.3); }
-  .faq-q {
-    padding: 20px 24px; font-weight: 700; cursor: pointer;
-    display: flex; justify-content: space-between; align-items: center;
-    user-select: none; transition: color .2s;
-  }
-  .faq-q:hover { color: var(--red); }
-  .faq-arrow { color: var(--red); font-size: 1.1rem; transition: transform .3s; }
-  .faq-item.open .faq-arrow { transform: rotate(180deg); }
-  .faq-a {
-    padding: 0 24px; max-height: 0; overflow: hidden;
-    transition: max-height .3s ease, padding .3s;
-    color: var(--muted); font-size: 0.9rem; line-height: 1.7;
-  }
-  .faq-item.open .faq-a { max-height: 200px; padding: 0 24px 20px; }
+/* App layout */
+.app-layout { display:flex; height:100vh; }
 
-  /* ─── CTA ─── */
-  #cta {
-    background: var(--bg);
-    text-align: center; padding: 120px 48px;
-    position: relative; overflow: hidden;
-  }
-  .cta-glow {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(232,41,28,0.08), transparent);
-    pointer-events: none;
-  }
-  .cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1; margin-bottom: 20px; }
-  .cta-sub { color: var(--muted); max-width: 460px; margin: 0 auto 40px; line-height: 1.7; }
+/* App sidebar */
+.app-sidebar {
+  width:220px; background:var(--bg2); border-right:1px solid var(--border);
+  display:flex; flex-direction:column; flex-shrink:0;
+}
+.app-sidebar-header { padding:18px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; }
+.app-sidebar-header .logo-icon { width:30px; height:30px; font-size:0.85rem; }
+.app-sidebar-header span { font-family:'Bebas Neue',sans-serif; font-size:1.2rem; letter-spacing:1.5px; }
 
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--bg); border-top: 1px solid var(--border);
-    padding: 60px 48px 32px;
-  }
-  .footer-top { display: flex; gap: 60px; margin-bottom: 48px; }
-  .footer-brand { flex: 0 0 260px; }
-  .footer-brand p { color: var(--muted); font-size: 0.87rem; line-height: 1.7; margin-top: 14px; }
-  .footer-col h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 16px; letter-spacing: 1px; }
-  .footer-col a { display: block; color: var(--muted); text-decoration: none; font-size: 0.85rem; margin-bottom: 10px; transition: color .2s; }
-  .footer-col a:hover { color: var(--red); }
-  .footer-bottom {
-    border-top: 1px solid var(--border); padding-top: 24px;
-    display: flex; justify-content: space-between; align-items: center;
-    color: var(--muted); font-size: 0.8rem;
-  }
+.sidebar-user { padding:14px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; }
+.sidebar-avatar { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--red),#7c3aed); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.82rem; }
+.sidebar-user-name { font-weight:700; font-size:0.85rem; }
+.sidebar-user-status { font-size:0.7rem; color:#22c55e; display:flex; align-items:center; gap:4px; margin-top:1px; }
+.status-dot-sm { width:5px; height:5px; background:#22c55e; border-radius:50%; }
 
-  /* ─── MODAL ─── */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(8px); z-index: 200;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity .3s;
-  }
-  .modal-overlay.active { opacity: 1; pointer-events: all; }
-  .modal {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 20px; padding: 40px; width: 420px; max-width: 90vw;
-    transform: translateY(20px) scale(0.97); transition: transform .3s;
-    position: relative;
-  }
-  .modal-overlay.active .modal { transform: translateY(0) scale(1); }
-  .modal-close {
-    position: absolute; top: 16px; right: 16px;
-    background: none; border: none; color: var(--muted); font-size: 1.4rem; cursor: pointer;
-    transition: color .2s; line-height: 1;
-  }
-  .modal-close:hover { color: var(--red); }
-  .modal h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-bottom: 6px; }
-  .modal p { color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; }
-  .form-group { margin-bottom: 16px; }
-  .form-group label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: var(--muted); letter-spacing: 0.5px; }
-  .form-group input {
-    width: 100%; padding: 12px 16px;
-    background: var(--bg3); border: 1px solid var(--border);
-    border-radius: 10px; color: #fff; font-family: 'Syne', sans-serif;
-    font-size: 0.9rem; outline: none; transition: border-color .2s;
-  }
-  .form-group input:focus { border-color: var(--red); }
-  .form-group input::placeholder { color: #444; }
-  .modal-tabs { display: flex; gap: 0; margin-bottom: 24px; background: var(--bg3); border-radius: 10px; padding: 4px; }
-  .modal-tab {
-    flex: 1; padding: 9px; text-align: center; font-size: 0.85rem; font-weight: 700;
-    cursor: pointer; border-radius: 8px; transition: all .2s; color: var(--muted);
-    border: none; background: none; font-family: 'Syne', sans-serif;
-  }
-  .modal-tab.active { background: var(--red); color: #fff; }
-  .modal-footer { text-align: center; margin-top: 16px; font-size: 0.8rem; color: var(--muted); }
-  .modal-footer a { color: var(--red); cursor: pointer; }
-  #form-success { display: none; text-align: center; padding: 20px 0; }
-  #form-success .success-icon { font-size: 3rem; margin-bottom: 16px; }
-  #form-success h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin-bottom: 8px; }
-  #form-success p { color: var(--muted); font-size: 0.9rem; }
+.sidebar-nav { flex:1; padding:12px 8px; overflow-y:auto; }
+.sidebar-section-label { font-size:0.65rem; font-weight:700; color:var(--muted2); letter-spacing:1.5px; text-transform:uppercase; padding:8px 10px 4px; }
+.sidebar-item {
+  display:flex; align-items:center; gap:10px; padding:9px 10px;
+  border-radius:8px; cursor:pointer; color:var(--muted); font-size:0.83rem;
+  font-weight:600; transition:all .15s; margin-bottom:2px; border:none; background:none;
+  width:100%; text-align:left; font-family:'Syne',sans-serif;
+}
+.sidebar-item:hover { background:rgba(255,255,255,0.05); color:#fff; }
+.sidebar-item.active { background:rgba(232,41,28,0.12); color:var(--red); }
+.sidebar-item-icon { font-size:0.95rem; width:18px; text-align:center; flex-shrink:0; }
+.sidebar-badge { margin-left:auto; background:var(--red); color:#fff; font-size:0.6rem; padding:2px 6px; border-radius:50px; font-family:'JetBrains Mono',monospace; }
 
-  /* ─── ANIMATIONS ─── */
-  .fade-up {
-    opacity: 0; transform: translateY(30px);
-    transition: opacity .6s ease, transform .6s ease;
-  }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
+.sidebar-footer { padding:12px 16px; border-top:1px solid var(--border); }
+.sidebar-footer-btns { display:flex; gap:6px; }
+.sidebar-footer-btns button { flex:1; padding:7px; border:1px solid var(--border); background:none; color:var(--muted); border-radius:7px; font-size:0.72rem; cursor:pointer; font-family:'Syne',sans-serif; transition:all .2s; font-weight:600; }
+.sidebar-footer-btns button:hover { border-color:var(--red); color:var(--red); }
 
-  @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    section { padding: 60px 24px; }
-    .stats-row { grid-template-columns: repeat(2,1fr); padding: 0 24px 60px; }
-    .features-grid, .pricing-grid, .testi-grid { grid-template-columns: 1fr; }
-    .dashboard-container { flex-direction: column; }
-    .dashboard-mock { transform: rotate(-1deg); }
-    .footer-top { flex-direction: column; gap: 32px; }
-  }
+/* App main */
+.app-main { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+.app-topbar { padding:14px 24px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; background:var(--bg2); flex-shrink:0; }
+.app-topbar-title { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:1px; }
+.app-topbar-right { display:flex; align-items:center; gap:10px; }
+.topbar-status { font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:#22c55e; background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); padding:4px 10px; border-radius:50px; display:flex; align-items:center; gap:5px; }
+.topbar-notif { position:relative; }
+.notif-badge { position:absolute; top:-4px; right:-4px; width:14px; height:14px; background:var(--red); border-radius:50%; font-size:0.6rem; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; }
+
+.app-content { flex:1; overflow-y:auto; padding:24px; }
+
+/* Tab panels */
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
+
+/* Cards */
+.dash-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:24px; }
+.dash-stat { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:18px; transition:border-color .3s; }
+.dash-stat:hover { border-color:rgba(232,41,28,0.3); }
+.dash-stat-label { font-size:0.72rem; color:var(--muted); font-weight:600; letter-spacing:0.5px; margin-bottom:8px; display:flex; align-items:center; justify-content:space-between; }
+.dash-stat-num { font-family:'Bebas Neue',sans-serif; font-size:2rem; color:#fff; }
+.dash-stat-num.red { color:var(--red); }
+.dash-stat-sub { font-size:0.7rem; color:#22c55e; margin-top:2px; }
+
+.panel-title { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:1px; margin-bottom:4px; }
+.panel-sub { color:var(--muted); font-size:0.83rem; margin-bottom:22px; }
+
+.card { background:var(--bg2); border:1px solid var(--border); border-radius:14px; padding:22px; margin-bottom:16px; }
+.card-title { font-weight:700; font-size:0.9rem; margin-bottom:4px; display:flex; align-items:center; gap:8px; }
+.card-desc { color:var(--muted); font-size:0.8rem; line-height:1.6; margin-bottom:16px; }
+.card-tip { background:rgba(232,41,28,0.06); border:1px solid rgba(232,41,28,0.15); border-radius:8px; padding:10px 14px; font-size:0.78rem; color:#c0756e; margin-bottom:16px; display:flex; gap:8px; align-items:flex-start; line-height:1.5; }
+.tip-icon { flex-shrink:0; margin-top:1px; }
+
+/* Form elements */
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+.form-row-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:12px; }
+.field { display:flex; flex-direction:column; gap:5px; }
+.field label { font-size:0.73rem; font-weight:700; color:var(--muted); letter-spacing:0.5px; }
+.field input, .field select, .field textarea {
+  background:var(--bg3); border:1px solid var(--border); border-radius:8px;
+  color:#fff; font-family:'Syne',sans-serif; font-size:0.85rem; padding:9px 12px; outline:none; transition:border-color .2s; width:100%;
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color:var(--red); }
+.field select { cursor:pointer; }
+.field textarea { resize:vertical; min-height:80px; }
+.field input::placeholder, .field textarea::placeholder { color:#444; }
+
+.toggle-row { display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border); }
+.toggle-row:last-child { border-bottom:none; }
+.toggle-info { flex:1; }
+.toggle-info-label { font-size:0.85rem; font-weight:600; }
+.toggle-info-desc { font-size:0.75rem; color:var(--muted); margin-top:2px; }
+.toggle { position:relative; width:38px; height:20px; flex-shrink:0; }
+.toggle input { opacity:0; width:0; height:0; }
+.toggle-slider { position:absolute; inset:0; background:#2a2a2a; border-radius:20px; cursor:pointer; transition:background .2s; }
+.toggle-slider:before { content:''; position:absolute; height:14px; width:14px; left:3px; bottom:3px; background:#666; border-radius:50%; transition:all .2s; }
+.toggle input:checked + .toggle-slider { background:var(--red); }
+.toggle input:checked + .toggle-slider:before { transform:translateX(18px); background:#fff; }
+
+.action-btn {
+  padding:9px 18px; border-radius:8px; font-family:'Syne',sans-serif; font-size:0.82rem; font-weight:700; cursor:pointer; transition:all .2s; border:1px solid var(--border); background:var(--bg3); color:var(--muted);
+}
+.action-btn:hover { border-color:rgba(255,255,255,0.2); color:#fff; }
+.action-btn.danger { border-color:rgba(232,41,28,0.3); color:#e06060; }
+.action-btn.danger:hover { background:rgba(232,41,28,0.1); border-color:var(--red); color:var(--red); }
+.action-btn.success { border-color:rgba(34,197,94,0.3); color:#22c55e; }
+.action-btn.success:hover { background:rgba(34,197,94,0.1); }
+.action-btn.primary { background:var(--red); border-color:var(--red); color:#fff; }
+.action-btn.primary:hover { box-shadow:0 0 16px var(--red-glow); }
+.action-btn-row { display:flex; flex-wrap:wrap; gap:8px; }
+
+/* Action grid */
+.action-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:10px; }
+.action-tile { background:var(--bg3); border:1px solid var(--border); border-radius:10px; padding:14px; cursor:pointer; transition:all .2s; text-align:center; }
+.action-tile:hover { border-color:rgba(232,41,28,0.35); transform:translateY(-2px); }
+.action-tile .a-icon { font-size:1.5rem; margin-bottom:8px; }
+.action-tile .a-label { font-size:0.8rem; font-weight:700; margin-bottom:4px; }
+.action-tile .a-desc { font-size:0.7rem; color:var(--muted); line-height:1.4; }
+.action-tile.red-tile:hover { border-color:rgba(232,41,28,0.6); background:rgba(232,41,28,0.05); }
+.action-tile.green-tile:hover { border-color:rgba(34,197,94,0.4); background:rgba(34,197,94,0.05); }
+.action-tile.yellow-tile:hover { border-color:rgba(245,158,11,0.4); background:rgba(245,158,11,0.05); }
+.action-tile.blue-tile:hover { border-color:rgba(96,165,250,0.4); background:rgba(96,165,250,0.05); }
+
+/* Table */
+.table-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; font-size:0.82rem; }
+th { text-align:left; padding:10px 14px; color:var(--muted); font-size:0.72rem; font-weight:700; letter-spacing:0.5px; border-bottom:1px solid var(--border); }
+td { padding:10px 14px; border-bottom:1px solid rgba(255,255,255,0.04); vertical-align:middle; }
+tr:hover td { background:rgba(255,255,255,0.02); }
+.td-badge { padding:3px 8px; border-radius:50px; font-size:0.68rem; font-weight:700; font-family:'JetBrains Mono',monospace; }
+.td-badge.active { background:rgba(34,197,94,0.12); color:#22c55e; border:1px solid rgba(34,197,94,0.2); }
+.td-badge.muted-b { background:rgba(255,255,255,0.05); color:var(--muted); border:1px solid var(--border); }
+.td-badge.warn { background:rgba(245,158,11,0.1); color:#f59e0b; border:1px solid rgba(245,158,11,0.2); }
+.td-badge.danger { background:rgba(232,41,28,0.1); color:#e06060; border:1px solid rgba(232,41,28,0.2); }
+
+/* Progress bars */
+.progress-bar-wrap { background:#1e1e1e; border-radius:4px; overflow:hidden; height:6px; }
+.progress-bar { height:100%; border-radius:4px; background:var(--red); transition:width 1s ease; }
+.progress-bar.green { background:#22c55e; }
+.progress-bar.blue { background:#60a5fa; }
+
+/* ═══ CONSOLE TAB ═══ */
+.console-wrap { display:flex; flex-direction:column; height:calc(100vh - 130px); }
+.console-output {
+  flex:1; background:#080808; border:1px solid rgba(232,41,28,0.2); border-radius:12px 12px 0 0;
+  padding:16px; overflow-y:auto; font-family:'JetBrains Mono',monospace; font-size:0.8rem; line-height:1.8;
+}
+.console-input-row {
+  display:flex; align-items:center; gap:0;
+  background:#0f0f0f; border:1px solid rgba(232,41,28,0.2); border-top:none;
+  border-radius:0 0 12px 12px; padding:10px 16px;
+}
+.console-prompt { color:var(--red); font-family:'JetBrains Mono',monospace; font-size:0.82rem; margin-right:8px; white-space:nowrap; }
+.console-input-field { flex:1; background:none; border:none; color:#fff; font-family:'JetBrains Mono',monospace; font-size:0.82rem; outline:none; }
+.c-red { color:var(--red); }
+.c-green { color:#22c55e; }
+.c-blue { color:#60a5fa; }
+.c-yellow { color:#f59e0b; }
+.c-gray { color:#555; }
+.c-white { color:#ddd; }
+.c-line { margin-bottom:3px; }
+.console-help-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:8px; }
+.console-help-item { background:#111; border:1px solid #1e1e1e; border-radius:6px; padding:8px 10px; }
+.console-help-item .c-cmd { color:var(--red); font-size:0.78rem; }
+.console-help-item .c-help-desc { color:#555; font-size:0.72rem; margin-top:2px; }
+
+/* ═══ NOTIFICATION PANEL ═══ */
+.notif-item { display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--border); }
+.notif-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+.notif-dot.red { background:var(--red); }
+.notif-dot.green { background:#22c55e; }
+.notif-dot.blue { background:#60a5fa; }
+.notif-dot.yellow { background:#f59e0b; }
+.notif-text { font-size:0.83rem; line-height:1.5; }
+.notif-time { font-size:0.7rem; color:var(--muted); margin-top:3px; font-family:'JetBrains Mono',monospace; }
+
+/* Toast */
+.toast { position:fixed; bottom:28px; right:28px; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px 18px; font-size:0.85rem; z-index:999; transform:translateX(200%); transition:transform .3s ease; max-width:320px; box-shadow:0 8px 32px rgba(0,0,0,0.5); }
+.toast.show { transform:translateX(0); }
+.toast.success { border-color:rgba(34,197,94,0.4); }
+.toast.error { border-color:rgba(232,41,28,0.4); }
+.toast-title { font-weight:700; margin-bottom:3px; display:flex; align-items:center; gap:6px; }
+
+/* Color pickers */
+.color-swatch { width:28px; height:28px; border-radius:6px; border:1px solid var(--border); cursor:pointer; flex-shrink:0; }
+.color-row { display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+
+/* Tabs within panels */
+.inner-tabs { display:flex; gap:4px; margin-bottom:20px; background:var(--bg3); border-radius:9px; padding:3px; width:fit-content; }
+.inner-tab { padding:7px 14px; font-size:0.8rem; font-weight:700; cursor:pointer; border-radius:7px; color:var(--muted); border:none; background:none; font-family:'Syne',sans-serif; transition:all .2s; }
+.inner-tab.active { background:var(--bg2); color:#fff; border:1px solid var(--border); }
+
+/* ═══ CHANNEL LIST MOCK ═══ */
+.channel-list { display:flex; flex-direction:column; gap:3px; }
+.channel-item { display:flex; align-items:center; gap:8px; padding:7px 10px; border-radius:7px; background:var(--bg3); border:1px solid var(--border); font-size:0.82rem; cursor:pointer; transition:all .2s; }
+.channel-item:hover { border-color:rgba(255,255,255,0.15); }
+.channel-icon { color:var(--muted); font-size:0.9rem; }
+.channel-name { flex:1; font-weight:600; }
+.channel-actions { display:flex; gap:4px; opacity:0; transition:opacity .2s; }
+.channel-item:hover .channel-actions { opacity:1; }
+.chan-btn { background:none; border:none; color:var(--muted); cursor:pointer; font-size:0.8rem; padding:2px 4px; transition:color .2s; }
+.chan-btn:hover { color:#fff; }
+.chan-btn.red:hover { color:var(--red); }
+
+/* Scrollbar for console */
+.console-output::-webkit-scrollbar { width:3px; }
+.console-output::-webkit-scrollbar-thumb { background:rgba(232,41,28,0.4); }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ═══════════════════════════════════════════ LANDING ═══ -->
+<div id="landing">
 <nav>
-  <div class="nav-logo">
-    <div class="logo-icon">P</div>
-    Prométheus
-  </div>
+  <div class="nav-logo"><div class="logo-icon">P</div> Prométheus</div>
   <div class="nav-links">
     <a href="#features">Features</a>
-    <a href="#pricing">Pricing</a>
     <a href="#testimonials">Testimonials</a>
     <a href="#faq">FAQ</a>
   </div>
@@ -595,498 +417,867 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-glow"></div>
   <div class="hero-grid"></div>
   <div class="status-pill"><span class="status-dot"></span> All systems operational</div>
   <h1 class="hero-title fade-up"><span class="accent">Prométheus</span><br>Your Advantage</h1>
-  <p class="hero-sub fade-up">Experience lightning-fast delivery and unbeatable features — completely free. Our automated platform ensures instant delivery with 24/7 customer support.</p>
+  <p class="hero-sub fade-up">Automated Discord tools — boost delivery, moderation, aesthetics, and automation. 100% free, 100% instant.</p>
   <div class="hero-actions fade-up">
-    <button class="btn-red-lg" onclick="openModal('register')">Join Discord →</button>
-    <button class="btn-outline" onclick="document.getElementById('dashboard').scrollIntoView({behavior:'smooth'})">View Dashboard</button>
-  </div>
-  <div class="hero-badges fade-up">
-    <span><span class="check">✓</span> Instant Delivery</span>
-    <span><span class="check">✓</span> 24/7 Support</span>
-    <span><span class="check">✓</span> 100% Free</span>
-  </div>
-</section>
-
-<!-- STATS -->
-<div class="stats-row">
-  <div class="stat-card fade-up">
-    <div class="stat-icon">⏰</div>
-    <div class="stat-num">10,000+</div>
-    <div class="stat-label">Happy Customers</div>
-  </div>
-  <div class="stat-card fade-up">
-    <div class="stat-icon">✓</div>
-    <div class="stat-num">50,000+</div>
-    <div class="stat-label">Services Delivered</div>
-  </div>
-  <div class="stat-card fade-up">
-    <div class="stat-icon">🛡</div>
-    <div class="stat-num">99.9%</div>
-    <div class="stat-label">Uptime Percentage</div>
-  </div>
-  <div class="stat-card fade-up">
-    <div class="stat-icon">⏱</div>
-    <div class="stat-num">24/7</div>
-    <div class="stat-label">Hour Support</div>
-  </div>
-</div>
-
-<!-- FEATURES -->
-<section id="features">
-  <div class="section-label">What We Offer</div>
-  <h2 class="section-title">Premium <span class="accent">Features</span></h2>
-  <p class="section-sub">Our platform offers advanced Discord boost services designed to elevate your server status and unlock premium features instantly.</p>
-  <div class="section-divider"></div>
-  <div class="features-grid">
-    <div class="feat-card fade-up">
-      <div class="feat-icon">⚡</div>
-      <h3>Instant Boost Delivery</h3>
-      <p>Our automated system delivers Discord boosts within seconds of purchase, instantly upgrading your server's perks and features.</p>
-      <div class="feat-badge"><span class="feat-dot"></span> Average delivery time: 30 seconds</div>
-    </div>
-    <div class="feat-card fade-up">
-      <div class="feat-icon">💰</div>
-      <h3>Completely Free</h3>
-      <p>Get the best value with our platform — all services are completely free, designed to fit any user while delivering premium quality.</p>
-      <div class="feat-badge"><span class="feat-dot"></span> 100% free, no hidden costs</div>
-    </div>
-    <div class="feat-card fade-up">
-      <div class="feat-icon">🎧</div>
-      <h3>24/7 Support</h3>
-      <p>Our dedicated support team is available around the clock to assist you with any questions or issues you might encounter.</p>
-      <div class="feat-badge"><span class="feat-dot"></span> Average response time: 5 minutes</div>
-    </div>
-    <div class="feat-card fade-up">
-      <div class="feat-icon">🛡</div>
-      <h3>Trusted Service</h3>
-      <p>Join thousands of satisfied customers who rely on our secure, reliable, and fully compliant Discord boost services.</p>
-      <div class="feat-badge"><span class="feat-dot"></span> 10,000+ satisfied customers</div>
-    </div>
-    <div class="feat-card fade-up">
-      <div class="feat-icon">🕐</div>
-      <h3>Instant Delivery</h3>
-      <p>No waiting around — our automated system ensures your Discord boosts are delivered immediately after confirmation.</p>
-      <div class="feat-badge"><span class="feat-dot"></span> Delivery within seconds</div>
-    </div>
-    <div class="feat-card fade-up">
-      <div class="feat-icon">🔒</div>
-      <h3>Secure Transactions</h3>
-      <p>Your account information is protected with bank-level encryption, ensuring every transaction is completely secure and private.</p>
-      <div class="feat-badge"><span class="feat-dot"></span> 256-bit SSL encryption</div>
-    </div>
-  </div>
-</section>
-
-<!-- DASHBOARD SHOWCASE -->
-<section id="dashboard">
-  <div class="section-label">The Interface</div>
-  <h2 class="section-title">Your <span class="accent">Dashboard</span></h2>
-  <p class="section-sub">A clean, powerful interface giving you full control over your account and services in real-time.</p>
-  <div class="section-divider"></div>
-  <div class="dashboard-container">
-    <div class="dashboard-info fade-up">
-      <h3>Everything At A Glance</h3>
-      <p>Monitor your services, manage your account, and track deliveries all from one sleek interface designed for power users.</p>
-      <div class="dash-feature">
-        <div class="dash-dot"></div>
-        <div class="dash-feature-text"><strong>Real-time notifications</strong> — Get instantly alerted when your boosts are delivered or your Nitro is redeemed.</div>
-      </div>
-      <div class="dash-feature">
-        <div class="dash-dot"></div>
-        <div class="dash-feature-text"><strong>Multi-account support</strong> — Manage multiple Discord accounts from a single dashboard seamlessly.</div>
-      </div>
-      <div class="dash-feature">
-        <div class="dash-dot"></div>
-        <div class="dash-feature-text"><strong>Private mode</strong> — Enable stealth mode to keep your activities completely hidden and private.</div>
-      </div>
-      <button class="btn-red-lg" style="margin-top:8px" onclick="openModal('register')">Access Dashboard →</button>
-    </div>
-    <div class="dashboard-mock-wrapper fade-up">
-      <div class="dashboard-mock">
-        <div class="mock-titlebar">
-          <div class="mock-dots">
-            <div class="mock-dot red"></div>
-            <div class="mock-dot yellow"></div>
-            <div class="mock-dot green"></div>
-          </div>
-          <div class="mock-app-name">
-            <div class="logo-n">P</div>
-            Prométheus
-          </div>
-        </div>
-        <div class="mock-body">
-          <div class="mock-sidebar">
-            <div class="mock-sidebar-icon active">⊞</div>
-            <div class="mock-sidebar-icon">◆</div>
-            <div class="mock-sidebar-icon">⬡</div>
-            <div class="mock-sidebar-icon">✦</div>
-            <div class="mock-sidebar-icon">&lt;/&gt;</div>
-          </div>
-          <div class="mock-main">
-            <div class="mock-greeting">Hello, <span>Prométheus User</span> 👋</div>
-            <div class="mock-user-card">
-              <div class="mock-avatar"></div>
-              <div class="mock-user-info">
-                <div class="mock-username">Prométheus User</div>
-                <div class="mock-handle">Prometheus_User</div>
-                <div class="mock-nitro">Nitro Active (expires in 30 days)</div>
-              </div>
-              <button class="btn-red" style="font-size:0.7rem;padding:6px 12px;height:fit-content">Switch</button>
-            </div>
-            <div class="mock-stats-row">
-              <div class="mock-stat">
-                <div class="mock-stat-num">32</div>
-                <div class="mock-stat-label">SERVERS</div>
-              </div>
-              <div class="mock-stat">
-                <div class="mock-stat-num">620</div>
-                <div class="mock-stat-label">FRIENDS</div>
-              </div>
-            </div>
-            <div class="mock-info-row">
-              <div class="mock-info-card">
-                <div class="mock-info-label">⬡ Version</div>
-                <div class="mock-info-val">2.4.16</div>
-              </div>
-              <div class="mock-info-card">
-                <div class="mock-info-label">↗ Commands</div>
-                <div class="mock-info-val">38 used</div>
-              </div>
-            </div>
-            <div class="mock-toggle-row">
-              <div class="mock-toggle-card">
-                <div class="mock-toggle-label">Discoverable</div>
-                <div class="mock-toggle"></div>
-              </div>
-              <div class="mock-toggle-card">
-                <div class="mock-toggle-label">Private Mode</div>
-                <div class="mock-toggle"></div>
-              </div>
-            </div>
-          </div>
-          <div class="mock-right">
-            <div class="mock-notif-title">🔔 Notifications</div>
-            <div class="mock-notif">
-              <div class="mock-notif-header">
-                <div class="mock-notif-icon">✓</div>
-                <div>
-                  <div class="mock-notif-text">Nitro Redeemed in 36ms</div>
-                  <div class="mock-notif-time">Just now · #boost</div>
-                </div>
-              </div>
-              <div class="mock-notif-badge">INSTANT DELIVERY</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TERMINAL (tilted, image4 style) -->
-<section id="terminal-section">
-  <div class="terminal-glow"></div>
-  <div class="section-label">Under The Hood</div>
-  <h2 class="section-title">Blazing <span class="accent">Fast Engine</span></h2>
-  <p class="section-sub">Our automated backend processes thousands of requests per second with near-zero latency.</p>
-  <div class="section-divider"></div>
-  <div class="terminal-wrapper fade-up">
-    <div class="terminal">
-      <div class="terminal-bar">
-        <div class="mock-dots">
-          <div class="mock-dot red"></div>
-          <div class="mock-dot yellow"></div>
-          <div class="mock-dot green"></div>
-        </div>
-        <span class="terminal-title">PROMÉTHEUS — CORE ENGINE v3.1.0</span>
-        <span style="color:#555;font-family:monospace;font-size:0.7rem">Tokens: 33 | Proxies: 2</span>
-      </div>
-      <div class="terminal-body">
-        <div class="t-line"><span class="t-prompt">prometheus@core:~$</span> <span class="t-cmd">boost --server "MyServer" --quantity 14</span></div>
-        <div class="t-line t-output">→ Initializing boost sequence...</div>
-        <div class="t-line t-output">→ Verifying account tokens [33/33]</div>
-        <div class="t-line t-output">→ Selecting optimal proxies...</div>
-        <div class="t-line t-success">✓ Token [1/14] applied — 42ms</div>
-        <div class="t-line t-success">✓ Token [2/14] applied — 38ms</div>
-        <div class="t-line t-success">✓ Token [3/14] applied — 41ms</div>
-        <div class="t-line t-info">  ...</div>
-        <div class="t-line t-success">✓ All 14 boosts delivered — avg 40ms</div>
-        <div class="t-line" style="margin-top:8px"><span class="t-prompt">prometheus@core:~$</span> <span class="t-cursor"></span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="section-label">Plans</div>
-  <h2 class="section-title">Always <span class="accent">Free</span></h2>
-  <p class="section-sub">All our plans are 100% free. No credit card, no tricks, no hidden fees — ever.</p>
-  <div class="section-divider"></div>
-  <div class="pricing-grid">
-    <div class="price-card fade-up">
-      <div class="plan-name">Starter</div>
-      <div class="plan-free">FREE</div>
-      <div class="plan-period">Forever free, no limits</div>
-      <ul class="plan-features">
-        <li><span class="check">✓</span> 2 Discord boosts/month</li>
-        <li><span class="check">✓</span> Basic dashboard access</li>
-        <li><span class="check">✓</span> Community support</li>
-        <li><span class="cross">✗</span> Priority delivery</li>
-        <li><span class="cross">✗</span> Multi-account</li>
-      </ul>
-      <button class="plan-btn plan-btn-outline" onclick="openModal('register')">Get Started Free</button>
-    </div>
-    <div class="price-card featured fade-up">
-      <div class="price-badge">POPULAR</div>
-      <div class="plan-name">Pro</div>
-      <div class="plan-free">FREE</div>
-      <div class="plan-period">Forever free, no limits</div>
-      <ul class="plan-features">
-        <li><span class="check">✓</span> Unlimited Discord boosts</li>
-        <li><span class="check">✓</span> Full dashboard access</li>
-        <li><span class="check">✓</span> 24/7 priority support</li>
-        <li><span class="check">✓</span> Priority delivery (&lt;30s)</li>
-        <li><span class="check">✓</span> Multi-account (up to 5)</li>
-      </ul>
-      <button class="plan-btn plan-btn-red" onclick="openModal('register')">Get Pro Free →</button>
-    </div>
-    <div class="price-card fade-up">
-      <div class="plan-name">Elite</div>
-      <div class="plan-free">FREE</div>
-      <div class="plan-period">Forever free, no limits</div>
-      <ul class="plan-features">
-        <li><span class="check">✓</span> Unlimited everything</li>
-        <li><span class="check">✓</span> VIP dashboard & analytics</li>
-        <li><span class="check">✓</span> Dedicated support agent</li>
-        <li><span class="check">✓</span> Instant delivery (&lt;10s)</li>
-        <li><span class="check">✓</span> Unlimited accounts</li>
-      </ul>
-      <button class="plan-btn plan-btn-outline" onclick="openModal('register')">Get Elite Free</button>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <div class="section-label">Social Proof</div>
-  <h2 class="section-title">What Users <span class="accent">Say</span></h2>
-  <div class="section-divider"></div>
-  <div class="testi-grid">
-    <div class="testi-card fade-up">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Insane speed — my server got boosted in under 30 seconds. Prométheus is the real deal, no BS."</p>
-      <div class="testi-author">
-        <div class="testi-avatar" style="background:linear-gradient(135deg,#e8291c,#7c3aed)">AX</div>
-        <div>
-          <div class="testi-name">Alex#0001</div>
-          <div class="testi-role">Server Admin · 2,400 members</div>
-        </div>
-      </div>
-    </div>
-    <div class="testi-card fade-up">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Used 3 other services before this. Nothing comes close. And the fact it's free is absolutely wild."</p>
-      <div class="testi-author">
-        <div class="testi-avatar" style="background:linear-gradient(135deg,#f59e0b,#e8291c)">KR</div>
-        <div>
-          <div class="testi-name">Kira#7734</div>
-          <div class="testi-role">Community Manager</div>
-        </div>
-      </div>
-    </div>
-    <div class="testi-card fade-up">
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Support replied in 3 minutes at 2am. Literally blew my mind. 10/10 will use forever."</p>
-      <div class="testi-author">
-        <div class="testi-avatar" style="background:linear-gradient(135deg,#22c55e,#0ea5e9)">ZT</div>
-        <div>
-          <div class="testi-name">ZeroTwo#4444</div>
-          <div class="testi-role">Nitro Enthusiast</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq">
-  <div class="section-label">Questions</div>
-  <h2 class="section-title">Frequently <span class="accent">Asked</span></h2>
-  <div class="section-divider"></div>
-  <div class="faq-list">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Is Prométheus really 100% free? <span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Yes, completely. All plans on Prométheus are free, forever. No credit card, no subscription, no hidden fees. We monetize differently so our users never pay a cent.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How fast is the boost delivery? <span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Our automated engine averages 30–40ms delivery time. Once your order is confirmed, boosts are applied nearly instantly — usually before you even refresh Discord.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Is my account safe? <span class="faq-arrow">▾</span></div>
-      <div class="faq-a">We use 256-bit SSL encryption on all transactions. Our service is fully compliant and uses rotating proxies to ensure your account remains secure and under the radar.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How do I create an account? <span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Click "Get Started" at the top of the page. Fill in your username, email, and password. Your account is created instantly — no email verification delay.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Can I manage multiple Discord accounts? <span class="faq-arrow">▾</span></div>
-      <div class="faq-a">Pro and Elite users can manage up to 5 and unlimited Discord accounts respectively, all from the same Prométheus dashboard. Switching between accounts takes one click.</div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="cta">
-  <div class="cta-glow"></div>
-  <h2 class="cta-title fade-up"><span style="color:var(--red)">Dominate</span><br>Your Server</h2>
-  <p class="cta-sub fade-up">Join 10,000+ users already using Prométheus to unlock the full potential of Discord — for free.</p>
-  <div class="hero-actions fade-up">
-    <button class="btn-red-lg" onclick="openModal('register')">Create Free Account →</button>
+    <button class="btn-red-lg" onclick="openModal('register')">Join Free →</button>
     <button class="btn-outline" onclick="openModal('login')">Log In</button>
   </div>
+  <div class="hero-badges fade-up">
+    <span><span class="check-green">✓</span> Instant Delivery</span>
+    <span><span class="check-green">✓</span> 24/7 Support</span>
+    <span><span class="check-green">✓</span> Always Free</span>
+  </div>
 </section>
 
-<!-- FOOTER -->
+<div class="stats-row">
+  <div class="stat-card fade-up"><div class="stat-num">10,000+</div><div class="stat-label">Happy Customers</div></div>
+  <div class="stat-card fade-up"><div class="stat-num">50,000+</div><div class="stat-label">Services Delivered</div></div>
+  <div class="stat-card fade-up"><div class="stat-num">99.9%</div><div class="stat-label">Uptime</div></div>
+  <div class="stat-card fade-up"><div class="stat-num">24/7</div><div class="stat-label">Support</div></div>
+</div>
+
+<section id="features" class="landing-section" style="background:var(--bg)">
+  <div class="section-label">Ce qu'on offre</div>
+  <h2 class="section-title">Premium <span class="accent">Features</span></h2>
+  <p class="section-sub">Outils Discord avancés — boosts, modération, automatisation, tout gratuit et instantané.</p>
+  <div class="section-divider"></div>
+  <div class="features-grid">
+    <div class="feat-card fade-up"><div class="feat-icon">⚡</div><h3>Instant Boost Delivery</h3><p>Boost livré en moins de 30 secondes après confirmation. Système entièrement automatisé.</p><div class="feat-badge"><span class="feat-dot"></span> Avg: 30 secondes</div></div>
+    <div class="feat-card fade-up"><div class="feat-icon">🎨</div><h3>Aesthetic Tools</h3><p>Personnalise ton serveur — channels, roles, couleurs, emojis, bannières. Tout en un clic.</p><div class="feat-badge"><span class="feat-dot"></span> Templates inclus</div></div>
+    <div class="feat-card fade-up"><div class="feat-icon">🛡</div><h3>Modération Avancée</h3><p>Ban, mute, kick, lockdown, anti-raid, filtres automatiques. Garde ton serveur propre.</p><div class="feat-badge"><span class="feat-dot"></span> Auto-mod inclus</div></div>
+    <div class="feat-card fade-up"><div class="feat-icon">🤖</div><h3>Automation</h3><p>Auto-réponses, commandes custom, triggers, welcome messages, schedulers.</p><div class="feat-badge"><span class="feat-dot"></span> No-code setup</div></div>
+    <div class="feat-card fade-up"><div class="feat-icon">📊</div><h3>Analytics</h3><p>Suivi en temps réel — membres, activité, messages, croissance. Dashboard complet.</p><div class="feat-badge"><span class="feat-dot"></span> Temps réel</div></div>
+    <div class="feat-card fade-up"><div class="feat-icon">🔒</div><h3>Sécurité</h3><p>Chiffrement 256-bit, proxies rotatifs, protection des tokens. Ton compte reste safe.</p><div class="feat-badge"><span class="feat-dot"></span> SSL 256-bit</div></div>
+  </div>
+</section>
+
+<section id="testimonials" class="landing-section" style="background:var(--bg2)">
+  <div class="section-label">Ils adorent</div>
+  <h2 class="section-title">Ce que disent <span class="accent">les users</span></h2>
+  <div class="section-divider"></div>
+  <div class="testi-grid">
+    <div class="testi-card fade-up"><div class="testi-stars">★★★★★</div><p class="testi-text">"Boost en 28 secondes chrono. Le dashboard est clean AF. Rien à redire."</p><div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#e8291c,#7c3aed)">AX</div><div><div class="testi-name">Alex#0001</div><div class="testi-role">Server Admin · 2,400 membres</div></div></div></div>
+    <div class="testi-card fade-up"><div class="testi-stars">★★★★★</div><p class="testi-text">"J'ai utilisé 3 autres services avant ça. Aucun ne rivalise. Et c'est gratuit — incroyable."</p><div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#f59e0b,#e8291c)">KR</div><div><div class="testi-name">Kira#7734</div><div class="testi-role">Community Manager</div></div></div></div>
+    <div class="testi-card fade-up"><div class="testi-stars">★★★★★</div><p class="testi-text">"Support a répondu en 3 minutes à 2h du mat. Bluffant. 10/10."</p><div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#22c55e,#0ea5e9)">ZT</div><div><div class="testi-name">ZeroTwo#4444</div><div class="testi-role">Nitro Enthusiast</div></div></div></div>
+  </div>
+</section>
+
+<section id="faq" class="landing-section" style="background:var(--bg)">
+  <div class="section-label">Questions</div>
+  <h2 class="section-title">FAQ <span class="accent">Rapide</span></h2>
+  <div class="section-divider"></div>
+  <div class="faq-list">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">C'est vraiment gratuit ? <span class="faq-arrow">▾</span></div><div class="faq-a">Oui, 100% gratuit pour toujours. Aucune carte bancaire, aucun abonnement caché.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Combien de temps pour la livraison ? <span class="faq-arrow">▾</span></div><div class="faq-a">Notre moteur automatisé livre en moyenne en 30-40ms. Pratiquement instantané.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Mon compte est-il en sécurité ? <span class="faq-arrow">▾</span></div><div class="faq-a">Chiffrement SSL 256-bit sur toutes les transactions. Proxies rotatifs pour rester discret.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Comment créer un compte ? <span class="faq-arrow">▾</span></div><div class="faq-a">Clique "Get Started" ci-dessus. Remplis username, email, mot de passe. Compte créé instantanément.</div></div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="cta-glow"></div>
+  <h2 class="cta-title fade-up"><span style="color:var(--red)">Rejoins</span><br>Prométheus</h2>
+  <p class="hero-sub fade-up" style="margin:0 auto 32px">10,000+ utilisateurs font déjà confiance à Prométheus.</p>
+  <div class="hero-actions fade-up">
+    <button class="btn-red-lg" onclick="openModal('register')">Créer un compte gratuit →</button>
+    <button class="btn-outline" onclick="openModal('login')">Se connecter</button>
+  </div>
+</section>
+
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="nav-logo">
-        <div class="logo-icon">P</div>
-        Prométheus
-      </div>
-      <p>The most powerful, free Discord boost platform. Instant delivery, 24/7 support, zero cost.</p>
+      <div class="nav-logo"><div class="logo-icon">P</div> Prométheus</div>
+      <p>La plateforme Discord la plus puissante — boost, modération, automation. Toujours gratuit.</p>
     </div>
-    <div class="footer-col">
-      <h4>PRODUCT</h4>
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#dashboard">Dashboard</a>
-      <a href="#faq">FAQ</a>
-    </div>
-    <div class="footer-col">
-      <h4>COMPANY</h4>
-      <a href="#">About Us</a>
-      <a href="#">Blog</a>
-      <a href="#">Careers</a>
-      <a href="#">Contact</a>
-    </div>
-    <div class="footer-col">
-      <h4>LEGAL</h4>
-      <a href="#">Terms of Service</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Cookie Policy</a>
-      <a href="#">DMCA</a>
-    </div>
+    <div class="footer-col"><h4>PRODUIT</h4><a href="#features">Features</a><a href="#testimonials">Testimonials</a><a href="#faq">FAQ</a></div>
+    <div class="footer-col"><h4>LÉGAL</h4><a href="#">CGU</a><a href="#">Confidentialité</a><a href="#">Cookies</a></div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 Prométheus. All rights reserved.</span>
-    <span>Built with ♥ for the Discord community</span>
-  </div>
+  <div class="footer-bottom"><span>© 2026 Prométheus. Tous droits réservés.</span><span>Fait avec ♥ pour la communauté Discord</span></div>
 </footer>
+</div><!-- /landing -->
 
-<!-- MODAL -->
+<!-- ═══════════════════════════════════════════ MODAL ═══ -->
 <div class="modal-overlay" id="authModal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">×</button>
-    <div id="modal-form-content">
-      <h2 id="modal-title">Welcome Back</h2>
-      <p id="modal-sub">Sign in to access your Prométheus dashboard.</p>
+    <div id="modal-form-wrap">
+      <h2 id="modal-title">Bienvenue</h2>
+      <p class="modal-desc" id="modal-sub">Connecte-toi à ton dashboard Prométheus.</p>
       <div class="modal-tabs">
-        <button class="modal-tab active" id="tab-login" onclick="switchTab('login')">Log In</button>
-        <button class="modal-tab" id="tab-register" onclick="switchTab('register')">Register</button>
+        <button class="modal-tab active" id="tab-login" onclick="switchTab('login')">Connexion</button>
+        <button class="modal-tab" id="tab-register" onclick="switchTab('register')">Inscription</button>
       </div>
       <div id="login-form">
-        <div class="form-group">
-          <label>EMAIL</label>
-          <input type="email" placeholder="you@example.com" id="login-email">
-        </div>
-        <div class="form-group">
-          <label>PASSWORD</label>
-          <input type="password" placeholder="••••••••" id="login-password">
-        </div>
-        <button class="btn-red-lg" style="width:100%;justify-content:center;margin-top:8px;border-radius:10px" onclick="submitForm()">Log In →</button>
-        <div class="modal-footer">Don't have an account? <a onclick="switchTab('register')">Create one free</a></div>
+        <div class="form-group"><label>EMAIL</label><input type="email" id="l-email" placeholder="toi@exemple.com"></div>
+        <div class="form-group"><label>MOT DE PASSE</label><input type="password" id="l-pw" placeholder="••••••••"></div>
+        <button class="btn-red-lg" style="width:100%;justify-content:center;margin-top:6px;border-radius:9px" onclick="doLogin()">Se connecter →</button>
+        <div class="modal-footer">Pas de compte ? <a onclick="switchTab('register')">Créer gratuitement</a></div>
       </div>
       <div id="register-form" style="display:none">
-        <div class="form-group">
-          <label>USERNAME</label>
-          <input type="text" placeholder="CoolUser123" id="reg-username">
-        </div>
-        <div class="form-group">
-          <label>EMAIL</label>
-          <input type="email" placeholder="you@example.com" id="reg-email">
-        </div>
-        <div class="form-group">
-          <label>PASSWORD</label>
-          <input type="password" placeholder="••••••••" id="reg-password">
-        </div>
-        <button class="btn-red-lg" style="width:100%;justify-content:center;margin-top:8px;border-radius:10px" onclick="submitForm()">Create Free Account →</button>
-        <div class="modal-footer">Already have an account? <a onclick="switchTab('login')">Log in</a></div>
+        <div class="form-group"><label>USERNAME</label><input type="text" id="r-user" placeholder="CoolUser123"></div>
+        <div class="form-group"><label>EMAIL</label><input type="email" id="r-email" placeholder="toi@exemple.com"></div>
+        <div class="form-group"><label>MOT DE PASSE</label><input type="password" id="r-pw" placeholder="••••••••"></div>
+        <button class="btn-red-lg" style="width:100%;justify-content:center;margin-top:6px;border-radius:9px" onclick="doLogin()">Créer mon compte →</button>
+        <div class="modal-footer">Déjà inscrit ? <a onclick="switchTab('login')">Se connecter</a></div>
       </div>
     </div>
-    <div id="form-success">
-      <div class="success-icon">🎉</div>
-      <h3>You're In!</h3>
-      <p>Welcome to Prométheus. Your account is ready — check your email to confirm.</p>
+    <div class="modal-success" id="modal-success">
+      <div class="s-icon">🚀</div>
+      <h3>C'est parti !</h3>
+      <p>Connexion réussie. Démarrage de Prométheus...</p>
+      <div style="margin-top:16px;width:100%;height:3px;background:#1a1a1a;border-radius:3px;overflow:hidden"><div id="login-progress" style="height:100%;background:var(--red);width:0;transition:width 1.5s ease;border-radius:3px"></div></div>
     </div>
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════ BOOT ═══ -->
+<div id="boot-screen" style="display:none">
+  <div class="boot-logo">PROMÉTHEUS</div>
+  <div class="boot-terminal" id="boot-lines"></div>
+  <div class="boot-progress"><div class="boot-progress-bar" id="boot-bar"></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════════ APP ═══ -->
+<div id="app">
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <div class="app-sidebar">
+    <div class="app-sidebar-header">
+      <div class="logo-icon">P</div>
+      <span>Prométheus</span>
+    </div>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar" id="sb-avatar">?</div>
+      <div>
+        <div class="sidebar-user-name" id="sb-username">User</div>
+        <div class="sidebar-user-status"><span class="status-dot-sm"></span> En ligne</div>
+      </div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="sidebar-section-label">NAVIGATION</div>
+      <button class="sidebar-item active" onclick="switchTab('overview')" data-tab="overview">
+        <span class="sidebar-item-icon">⊞</span> Aperçu
+      </button>
+      <button class="sidebar-item" onclick="switchTab('aesthetic')" data-tab="aesthetic">
+        <span class="sidebar-item-icon">🎨</span> Esthétique
+      </button>
+      <button class="sidebar-item" onclick="switchTab('moderation')" data-tab="moderation">
+        <span class="sidebar-item-icon">🛡</span> Modération
+        <span class="sidebar-badge">HOT</span>
+      </button>
+      <button class="sidebar-item" onclick="switchTab('automation')" data-tab="automation">
+        <span class="sidebar-item-icon">🤖</span> Automation
+      </button>
+      <button class="sidebar-item" onclick="switchTab('analytics')" data-tab="analytics">
+        <span class="sidebar-item-icon">📊</span> Analytics
+      </button>
+      <button class="sidebar-item" onclick="switchTab('console')" data-tab="console">
+        <span class="sidebar-item-icon">⌨</span> Console
+        <span class="sidebar-badge">DEV</span>
+      </button>
+      <div class="sidebar-section-label" style="margin-top:10px">COMPTE</div>
+      <button class="sidebar-item" onclick="switchTab('notifications')" data-tab="notifications">
+        <span class="sidebar-item-icon">🔔</span> Notifications
+        <span class="sidebar-badge" id="notif-count">3</span>
+      </button>
+      <button class="sidebar-item" onclick="switchTab('settings')" data-tab="settings">
+        <span class="sidebar-item-icon">⚙</span> Paramètres
+      </button>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-btns">
+        <button onclick="showToast('Lien copié !','success')">🔗 Inviter</button>
+        <button onclick="doLogout()" style="color:#e06060">⏻ Déco</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="app-main">
+    <div class="app-topbar">
+      <div class="app-topbar-title" id="topbar-title">Vue d'ensemble</div>
+      <div class="app-topbar-right">
+        <div class="topbar-status"><span class="status-dot-sm"></span> Connecté</div>
+        <div class="topbar-notif">
+          <button style="background:none;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:0.9rem" onclick="switchTab('notifications')">🔔</button>
+          <div class="notif-badge" id="notif-badge">3</div>
+        </div>
+        <button class="action-btn primary" onclick="showToast('Commande exécutée !','success')" style="font-size:0.78rem;padding:7px 14px">⚡ Quick Boost</button>
+      </div>
+    </div>
+
+    <div class="app-content">
+
+      <!-- ══ TAB: OVERVIEW ══ -->
+      <div class="tab-panel active" id="tab-overview">
+        <div class="panel-title">Bienvenue, <span id="welcome-name" style="color:var(--red)">User</span> 👋</div>
+        <div class="panel-sub">Voici ton tableau de bord Prométheus en temps réel.</div>
+
+        <div class="dash-grid">
+          <div class="dash-stat"><div class="dash-stat-label">BOOSTS ACTIFS <span>⚡</span></div><div class="dash-stat-num red">14</div><div class="dash-stat-sub">+2 cette semaine</div></div>
+          <div class="dash-stat"><div class="dash-stat-label">SERVEURS <span>⊞</span></div><div class="dash-stat-num">32</div><div class="dash-stat-sub">Max: 100</div></div>
+          <div class="dash-stat"><div class="dash-stat-label">COMMANDES <span>⌨</span></div><div class="dash-stat-num">438</div><div class="dash-stat-sub">Ce mois</div></div>
+          <div class="dash-stat"><div class="dash-stat-label">UPTIME <span>🟢</span></div><div class="dash-stat-num red">99.9%</div><div class="dash-stat-sub">30 derniers jours</div></div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="card">
+            <div class="card-title">🔔 Activité récente</div>
+            <div class="notif-item"><div class="notif-dot green"></div><div><div class="notif-text">Boost appliqué sur <strong>MyServer</strong></div><div class="notif-time">Il y a 2 min</div></div></div>
+            <div class="notif-item"><div class="notif-dot blue"></div><div><div class="notif-text">Auto-mod a bloqué 1 spam</div><div class="notif-time">Il y a 15 min</div></div></div>
+            <div class="notif-item"><div class="notif-dot red"></div><div><div class="notif-text">1 utilisateur banni par règle anti-raid</div><div class="notif-time">Il y a 1h</div></div></div>
+            <div class="notif-item" style="border:none"><div class="notif-dot yellow"></div><div><div class="notif-text">Nitro renouvelé automatiquement</div><div class="notif-time">Il y a 3h</div></div></div>
+          </div>
+          <div class="card">
+            <div class="card-title">📈 Performance</div>
+            <div style="margin-bottom:14px">
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:6px"><span>CPU Usage</span><span style="color:var(--muted)">23%</span></div>
+              <div class="progress-bar-wrap"><div class="progress-bar" style="width:23%"></div></div>
+            </div>
+            <div style="margin-bottom:14px">
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:6px"><span>RAM Usage</span><span style="color:var(--muted)">41%</span></div>
+              <div class="progress-bar-wrap"><div class="progress-bar blue" style="width:41%"></div></div>
+            </div>
+            <div style="margin-bottom:14px">
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:6px"><span>Requests/s</span><span style="color:var(--muted)">87%</span></div>
+              <div class="progress-bar-wrap"><div class="progress-bar green" style="width:87%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:6px"><span>Queue Load</span><span style="color:var(--muted)">12%</span></div>
+              <div class="progress-bar-wrap"><div class="progress-bar" style="width:12%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:0">
+          <div class="card-title">⚡ Actions rapides</div>
+          <div class="action-grid" style="grid-template-columns:repeat(auto-fill,minmax(140px,1fr))">
+            <div class="action-tile green-tile" onclick="showToast('Boost lancé !','success')"><div class="a-icon">🚀</div><div class="a-label">Boost Server</div><div class="a-desc">Livraison &lt;30s</div></div>
+            <div class="action-tile blue-tile" onclick="switchTab('aesthetic')"><div class="a-icon">🎨</div><div class="a-label">Aesthetic</div><div class="a-desc">Channels & rôles</div></div>
+            <div class="action-tile red-tile" onclick="switchTab('moderation')"><div class="a-icon">🛡</div><div class="a-label">Modération</div><div class="a-desc">Ban / Mute / Lock</div></div>
+            <div class="action-tile yellow-tile" onclick="switchTab('console')"><div class="a-icon">⌨</div><div class="a-label">Console</div><div class="a-desc">Commandes avancées</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB: AESTHETIC ══ -->
+      <div class="tab-panel" id="tab-aesthetic">
+        <div class="panel-title">🎨 Esthétique du Serveur</div>
+        <div class="panel-sub">Personnalise l'apparence de ton serveur Discord — channels, rôles, emojis, et plus.</div>
+
+        <div class="inner-tabs">
+          <button class="inner-tab active" onclick="setInnerTab(this,'aesth')">Channels</button>
+          <button class="inner-tab" onclick="setInnerTab(this,'aesth')">Rôles</button>
+          <button class="inner-tab" onclick="setInnerTab(this,'aesth')">Emojis</button>
+          <button class="inner-tab" onclick="setInnerTab(this,'aesth')">Templates</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">📁 Créer un channel</div>
+          <div class="card-desc">Ajoute un nouveau channel texte, vocal ou de forum à ton serveur Discord.</div>
+          <div class="card-tip"><span class="tip-icon">💡</span> <span>Les channels avec <strong>#</strong> sont des channels texte, <strong>🔊</strong> sont vocaux, et <strong>📢</strong> sont des annonces. Utilise des emojis dans les noms pour les rendre visuellement distincts !</span></div>
+          <div class="form-row">
+            <div class="field"><label>NOM DU CHANNEL</label><input type="text" placeholder="🔥-général" value="🎮-gaming"></div>
+            <div class="field"><label>TYPE</label><select><option>📝 Texte</option><option>🔊 Vocal</option><option>📢 Annonces</option><option>📂 Forum</option><option>🎙 Stage</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>CATÉGORIE</label><select><option>Général</option><option>Gaming</option><option>Musique</option><option>Staff</option><option>Bots</option></select></div>
+            <div class="field"><label>SLOWMODE</label><select><option>Désactivé</option><option>5 secondes</option><option>10 secondes</option><option>30 secondes</option><option>1 minute</option></select></div>
+          </div>
+          <div class="field" style="margin-bottom:14px"><label>DESCRIPTION / TOPIC</label><input type="text" placeholder="Bienvenue dans ce channel..."></div>
+          <div class="action-btn-row">
+            <button class="action-btn primary" onclick="showToast('Channel créé !','success')">✓ Créer channel</button>
+            <button class="action-btn" onclick="showToast('Aperçu généré','success')">👁 Aperçu</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">📋 Channels existants</div>
+          <div class="card-desc">Gérer et modifier tes channels rapidement.</div>
+          <div class="channel-list">
+            <div class="channel-item"><span class="channel-icon">#</span><span class="channel-name">🔥-général</span><span style="font-size:0.72rem;color:var(--muted)">Texte</span><div class="channel-actions"><button class="chan-btn">✏</button><button class="chan-btn">🔒</button><button class="chan-btn red" onclick="showToast('Channel supprimé','error')">🗑</button></div></div>
+            <div class="channel-item"><span class="channel-icon">#</span><span class="channel-name">📢-annonces</span><span style="font-size:0.72rem;color:var(--muted)">Annonces</span><div class="channel-actions"><button class="chan-btn">✏</button><button class="chan-btn">🔒</button><button class="chan-btn red" onclick="showToast('Channel supprimé','error')">🗑</button></div></div>
+            <div class="channel-item"><span class="channel-icon">🔊</span><span class="channel-name">Gaming Voice</span><span style="font-size:0.72rem;color:var(--muted)">Vocal</span><div class="channel-actions"><button class="chan-btn">✏</button><button class="chan-btn">🔒</button><button class="chan-btn red" onclick="showToast('Channel supprimé','error')">🗑</button></div></div>
+            <div class="channel-item"><span class="channel-icon">#</span><span class="channel-name">🤖-bot-commands</span><span style="font-size:0.72rem;color:var(--muted)">Texte</span><div class="channel-actions"><button class="chan-btn">✏</button><button class="chan-btn">🔒</button><button class="chan-btn red" onclick="showToast('Channel supprimé','error')">🗑</button></div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🏷 Créer un rôle</div>
+          <div class="card-desc">Configure un nouveau rôle avec ses permissions et son apparence.</div>
+          <div class="card-tip"><span class="tip-icon">💡</span><span>La <strong>couleur du rôle</strong> détermine la couleur du nom de l'utilisateur dans le chat. Un rôle bien nommé avec une belle couleur améliore énormément l'esthétique du serveur.</span></div>
+          <div class="form-row">
+            <div class="field"><label>NOM DU RÔLE</label><input type="text" placeholder="⚔ Guerrier" value="🔴 Admin"></div>
+            <div class="field"><label>COULEUR</label>
+              <div class="color-row" style="margin-top:6px">
+                <div class="color-swatch" style="background:#e8291c" onclick="showToast('Couleur rouge sélectionnée','success')"></div>
+                <div class="color-swatch" style="background:#7c3aed" onclick="showToast('Couleur violette sélectionnée','success')"></div>
+                <div class="color-swatch" style="background:#22c55e" onclick="showToast('Couleur verte sélectionnée','success')"></div>
+                <div class="color-swatch" style="background:#f59e0b" onclick="showToast('Couleur jaune sélectionnée','success')"></div>
+                <div class="color-swatch" style="background:#60a5fa" onclick="showToast('Couleur bleue sélectionnée','success')"></div>
+                <div class="color-swatch" style="background:#ec4899" onclick="showToast('Couleur rose sélectionnée','success')"></div>
+                <input type="color" style="width:28px;height:28px;border-radius:6px;border:1px solid var(--border);cursor:pointer;background:none;padding:0">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>POSITION</label><input type="number" placeholder="1" value="1" min="1"></div>
+            <div class="field"><label>MENTIONNABLE</label><select><option>Oui</option><option>Non</option></select></div>
+          </div>
+          <div style="margin-bottom:16px">
+            <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Afficher séparément</div><div class="toggle-info-desc">Le rôle apparaît séparé dans la liste des membres</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+            <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Permission Admin</div><div class="toggle-info-desc">Accès complet au serveur — attention !</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Gérer les channels</div><div class="toggle-info-desc">Peut créer/supprimer des channels</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+          </div>
+          <button class="action-btn primary" onclick="showToast('Rôle créé avec succès !','success')">✓ Créer le rôle</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">😄 Gérer les emojis</div>
+          <div class="card-desc">Uploade et organise les emojis custom de ton serveur.</div>
+          <div class="card-tip"><span class="tip-icon">💡</span><span>Discord autorise <strong>50 emojis statiques</strong> et <strong>50 emojis animés</strong> par serveur. Avec Nitro Level 2, tu passes à 100 de chaque !</span></div>
+          <div class="form-row">
+            <div class="field"><label>NOM EMOJI</label><input type="text" placeholder="monEmoji"></div>
+            <div class="field"><label>FICHIER</label><input type="file" accept="image/*" style="padding:7px"></div>
+          </div>
+          <div class="action-btn-row">
+            <button class="action-btn primary" onclick="showToast('Emoji uploadé !','success')">📤 Uploader</button>
+            <button class="action-btn" onclick="showToast('Liste rafraîchie','success')">🔄 Rafraîchir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB: MODERATION ══ -->
+      <div class="tab-panel" id="tab-moderation">
+        <div class="panel-title">🛡 Modération</div>
+        <div class="panel-sub">Contrôle total sur les membres et la sécurité de ton serveur.</div>
+
+        <div class="dash-grid">
+          <div class="dash-stat"><div class="dash-stat-label">BANS ACTIFS</div><div class="dash-stat-num red">12</div></div>
+          <div class="dash-stat"><div class="dash-stat-label">MUTES ACTIFS</div><div class="dash-stat-num">4</div></div>
+          <div class="dash-stat"><div class="dash-stat-label">WARNS TOTAL</div><div class="dash-stat-num">37</div></div>
+          <div class="dash-stat"><div class="dash-stat-label">AUTO-MOD BLOQUÉS</div><div class="dash-stat-num red">128</div></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">⚡ Actions rapides de modération</div>
+          <div class="card-desc">Applique des actions directement sur un membre ou le serveur entier.</div>
+          <div class="card-tip"><span class="tip-icon">⚠️</span><span>Les actions <strong>Ban</strong> et <strong>Lock Server</strong> sont irréversibles sans intervention manuelle. Assure-toi d'avoir les bonnes permissions avant d'agir.</span></div>
+          <div class="action-grid">
+            <div class="action-tile red-tile" onclick="modAction('ban')"><div class="a-icon">🔨</div><div class="a-label">Ban</div><div class="a-desc">Bannir définitivement un membre</div></div>
+            <div class="action-tile red-tile" onclick="modAction('kick')"><div class="a-icon">👟</div><div class="a-label">Kick</div><div class="a-desc">Expulser (peut revenir)</div></div>
+            <div class="action-tile yellow-tile" onclick="modAction('mute')"><div class="a-icon">🔇</div><div class="a-label">Mute</div><div class="a-desc">Réduire au silence temporairement</div></div>
+            <div class="action-tile yellow-tile" onclick="modAction('warn')"><div class="a-icon">⚠️</div><div class="a-label">Warn</div><div class="a-desc">Avertir un membre</div></div>
+            <div class="action-tile red-tile" onclick="modAction('lock')"><div class="a-icon">🔒</div><div class="a-label">Lock Server</div><div class="a-desc">Verrouiller tout le serveur</div></div>
+            <div class="action-tile green-tile" onclick="modAction('unlock')"><div class="a-icon">🔓</div><div class="a-label">Unlock</div><div class="a-desc">Déverrouiller le serveur</div></div>
+            <div class="action-tile blue-tile" onclick="modAction('slowmode')"><div class="a-icon">🐌</div><div class="a-label">Slowmode</div><div class="a-desc">Limiter la fréquence des messages</div></div>
+            <div class="action-tile red-tile" onclick="modAction('purge')"><div class="a-icon">🗑</div><div class="a-label">Purge</div><div class="a-desc">Supprimer des messages en masse</div></div>
+            <div class="action-tile yellow-tile" onclick="modAction('timeout')"><div class="a-icon">⏳</div><div class="a-label">Timeout</div><div class="a-desc">Suspension temporaire Discord</div></div>
+            <div class="action-tile blue-tile" onclick="modAction('deafen')"><div class="a-icon">🎧</div><div class="a-label">Deafen</div><div class="a-desc">Rendre sourd en vocal</div></div>
+            <div class="action-tile blue-tile" onclick="modAction('move')"><div class="a-icon">↗</div><div class="a-label">Move VC</div><div class="a-desc">Déplacer dans un vocal</div></div>
+            <div class="action-tile green-tile" onclick="modAction('unban')"><div class="a-icon">✅</div><div class="a-label">Unban</div><div class="a-desc">Lever un bannissement</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🎯 Cibler un membre</div>
+          <div class="card-desc">Entre l'ID ou le nom d'un membre pour appliquer une action précise.</div>
+          <div class="form-row">
+            <div class="field"><label>MEMBRE (ID ou nom#tag)</label><input type="text" placeholder="UserName#0001 ou 123456789"></div>
+            <div class="field"><label>ACTION</label><select><option>Ban permanent</option><option>Ban temporaire</option><option>Kick</option><option>Mute 1h</option><option>Mute 24h</option><option>Warn</option><option>Timeout 1h</option><option>Unban</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>RAISON</label><input type="text" placeholder="Violation des règles — spam répété"></div>
+            <div class="field"><label>NOTIFIER LE MEMBRE</label><select><option>Oui — DM automatique</option><option>Non</option></select></div>
+          </div>
+          <div class="field" style="margin-bottom:14px"><label>MESSAGE DE NOTIFICATION (optionnel)</label><textarea placeholder="Tu as été sanctionné sur [Serveur] pour : ..."></textarea></div>
+          <div class="action-btn-row">
+            <button class="action-btn danger" onclick="showToast('Action de modération appliquée','error')">⚡ Appliquer</button>
+            <button class="action-btn" onclick="showToast('Historique consulté','success')">📋 Historique membre</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🤖 Auto-Modération</div>
+          <div class="card-desc">Configure des règles automatiques pour protéger ton serveur sans intervention manuelle.</div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Anti-spam</div><div class="toggle-info-desc">Supprime automatiquement les messages dupliqués en rafale</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Anti-raid</div><div class="toggle-info-desc">Détecte et bloque les waves de nouveaux comptes suspects</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Filtre de mots</div><div class="toggle-info-desc">Supprime les messages contenant des mots bannis</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Anti-phishing</div><div class="toggle-info-desc">Bloque et supprime les liens de phishing et scam connus</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Vérification nouveaux membres</div><div class="toggle-info-desc">Captcha requis pour les comptes de moins de 7 jours</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Anti-mention spam</div><div class="toggle-info-desc">Limite le nombre de @mentions par message</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+          <div style="margin-top:14px">
+            <button class="action-btn primary" onclick="showToast('Config auto-mod sauvegardée !','success')">💾 Sauvegarder</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">📋 Journal de modération</div>
+          <div class="card-desc">Historique des 10 dernières actions de modération.</div>
+          <div class="table-wrap">
+            <table>
+              <tr><th>ACTION</th><th>MEMBRE</th><th>MODÉRATEUR</th><th>RAISON</th><th>DATE</th><th>STATUT</th></tr>
+              <tr><td>🔨 Ban</td><td>spammer#0001</td><td>Admin</td><td>Spam répété</td><td>Il y a 2h</td><td><span class="td-badge danger">Actif</span></td></tr>
+              <tr><td>🔇 Mute</td><td>troll#4444</td><td>Mod1</td><td>Toxicité</td><td>Il y a 5h</td><td><span class="td-badge warn">1h reste</span></td></tr>
+              <tr><td>👟 Kick</td><td>newuser#7777</td><td>Auto-mod</td><td>Anti-raid</td><td>Il y a 1j</td><td><span class="td-badge muted-b">Expulsé</span></td></tr>
+              <tr><td>⚠️ Warn</td><td>user123#0000</td><td>Mod2</td><td>Langage</td><td>Il y a 2j</td><td><span class="td-badge active">Noté</span></td></tr>
+              <tr><td>✅ Unban</td><td>reformed#9999</td><td>Admin</td><td>Appel accepté</td><td>Il y a 3j</td><td><span class="td-badge active">Levé</span></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB: AUTOMATION ══ -->
+      <div class="tab-panel" id="tab-automation">
+        <div class="panel-title">🤖 Automation</div>
+        <div class="panel-sub">Configure des actions automatiques — welcome messages, réponses auto, commandes custom.</div>
+
+        <div class="card">
+          <div class="card-title">👋 Message de Bienvenue</div>
+          <div class="card-desc">Envoie automatiquement un message quand un nouveau membre rejoint.</div>
+          <div class="card-tip"><span class="tip-icon">💡</span><span>Tu peux utiliser des variables : <strong>{user}</strong> → nom du membre, <strong>{server}</strong> → nom du serveur, <strong>{membercount}</strong> → nombre de membres total.</span></div>
+          <div class="toggle-row" style="margin-bottom:14px"><div class="toggle-info"><div class="toggle-info-label">Activer les messages de bienvenue</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+          <div class="form-row">
+            <div class="field"><label>CHANNEL</label><select><option>#🔥-général</option><option>#📢-annonces</option><option>#👋-bienvenue</option></select></div>
+            <div class="field"><label>FORMAT</label><select><option>Message texte</option><option>Embed</option><option>DM privé</option></select></div>
+          </div>
+          <div class="field" style="margin-bottom:14px"><label>MESSAGE</label><textarea>Bienvenue sur le serveur, {user} ! 🎉 Tu es notre {membercount}ème membre. N'oublie pas de lire les règles !</textarea></div>
+          <button class="action-btn primary" onclick="showToast('Message de bienvenue configuré !','success')">💾 Sauvegarder</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">💬 Auto-Réponses</div>
+          <div class="card-desc">Crée des triggers — quand un mot est détecté, le bot répond automatiquement.</div>
+          <div class="form-row">
+            <div class="field"><label>DÉCLENCHEUR (trigger)</label><input type="text" placeholder="!help, bonjour, ?info..."></div>
+            <div class="field"><label>TYPE DE MATCH</label><select><option>Contient le mot</option><option>Commence par</option><option>Exact</option><option>Regex</option></select></div>
+          </div>
+          <div class="field" style="margin-bottom:14px"><label>RÉPONSE</label><textarea placeholder="Le bot répondra avec ce message..."></textarea></div>
+          <div class="action-btn-row">
+            <button class="action-btn primary" onclick="showToast('Auto-réponse ajoutée !','success')">✓ Ajouter</button>
+            <button class="action-btn" onclick="showToast('Liste exportée','success')">📤 Exporter</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">⏰ Scheduler — Messages Programmés</div>
+          <div class="card-desc">Programme des messages récurrents ou ponctuels dans n'importe quel channel.</div>
+          <div class="card-tip"><span class="tip-icon">💡</span><span>Parfait pour les annonces quotidiennes, les rappels de règles hebdomadaires, ou les événements récurrents. Utilise le format <strong>cron</strong> pour une précision totale.</span></div>
+          <div class="form-row-3">
+            <div class="field"><label>CHANNEL</label><select><option>#📢-annonces</option><option>#🔥-général</option></select></div>
+            <div class="field"><label>FRÉQUENCE</label><select><option>Chaque heure</option><option>Chaque jour</option><option>Chaque semaine</option><option>Une fois</option><option>Cron custom</option></select></div>
+            <div class="field"><label>HEURE</label><input type="time" value="18:00"></div>
+          </div>
+          <div class="field" style="margin-bottom:14px"><label>MESSAGE PROGRAMMÉ</label><textarea placeholder="🔔 Rappel quotidien : Respectez les règles du serveur !"></textarea></div>
+          <button class="action-btn primary" onclick="showToast('Message programmé !','success')">⏰ Programmer</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🎭 Rôles Automatiques</div>
+          <div class="card-desc">Assigne automatiquement des rôles selon les actions des membres.</div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Auto-rôle à l'arrivée</div><div class="toggle-info-desc">Donne un rôle par défaut aux nouveaux membres</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Rôles par réaction</div><div class="toggle-info-desc">Les membres choisissent leurs rôles via des réactions</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Rôles par niveau</div><div class="toggle-info-desc">Débloque des rôles selon les niveaux d'XP</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Rôle Nitro Booster</div><div class="toggle-info-desc">Rôle spécial automatique pour les boosters</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+          <div style="margin-top:14px"><button class="action-btn primary" onclick="showToast('Rôles automatiques configurés !','success')">💾 Sauvegarder</button></div>
+        </div>
+      </div>
+
+      <!-- ══ TAB: ANALYTICS ══ -->
+      <div class="tab-panel" id="tab-analytics">
+        <div class="panel-title">📊 Analytics</div>
+        <div class="panel-sub">Statistiques en temps réel de ton serveur Discord.</div>
+
+        <div class="dash-grid">
+          <div class="dash-stat"><div class="dash-stat-label">MEMBRES TOTAL</div><div class="dash-stat-num red">2,847</div><div class="dash-stat-sub">+127 ce mois</div></div>
+          <div class="dash-stat"><div class="dash-stat-label">EN LIGNE</div><div class="dash-stat-num">342</div><div class="dash-stat-sub">12% du total</div></div>
+          <div class="dash-stat"><div class="dash-stat-label">MESSAGES/JOUR</div><div class="dash-stat-num red">4,291</div><div class="dash-stat-sub">↑ 18% vs hier</div></div>
+          <div class="dash-stat"><div class="dash-stat-label">RÉTENTION</div><div class="dash-stat-num">78%</div><div class="dash-stat-sub">30 derniers jours</div></div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="card">
+            <div class="card-title">📈 Croissance des membres</div>
+            <div class="card-desc">Évolution sur les 30 derniers jours</div>
+            <div style="height:120px;display:flex;align-items:flex-end;gap:4px;padding-top:10px">
+              <!-- Simple bar chart -->
+              <div style="flex:1;background:rgba(232,41,28,0.15);border-radius:3px 3px 0 0;height:40%;position:relative"><div style="position:absolute;bottom:-18px;font-size:0.6rem;color:var(--muted);left:50%;transform:translateX(-50%)">S1</div></div>
+              <div style="flex:1;background:rgba(232,41,28,0.25);border-radius:3px 3px 0 0;height:55%"></div>
+              <div style="flex:1;background:rgba(232,41,28,0.3);border-radius:3px 3px 0 0;height:45%"></div>
+              <div style="flex:1;background:rgba(232,41,28,0.4);border-radius:3px 3px 0 0;height:70%"></div>
+              <div style="flex:1;background:rgba(232,41,28,0.15);border-radius:3px 3px 0 0;height:35%"></div>
+              <div style="flex:1;background:rgba(232,41,28,0.5);border-radius:3px 3px 0 0;height:80%"></div>
+              <div style="flex:1;background:rgba(232,41,28,0.35);border-radius:3px 3px 0 0;height:60%"></div>
+              <div style="flex:1;background:var(--red);border-radius:3px 3px 0 0;height:100%;position:relative"><div style="position:absolute;bottom:-18px;font-size:0.6rem;color:var(--muted);left:50%;transform:translateX(-50%)">S4</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">🕐 Activité horaire</div>
+            <div class="card-desc">Heures les plus actives du jour</div>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+              <div><div style="display:flex;justify-content:space-between;font-size:0.74rem;margin-bottom:4px"><span>18h-22h</span><span style="color:var(--red)">Pic</span></div><div class="progress-bar-wrap"><div class="progress-bar" style="width:95%"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.74rem;margin-bottom:4px"><span>14h-18h</span><span style="color:var(--muted)">Élevé</span></div><div class="progress-bar-wrap"><div class="progress-bar" style="width:70%"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.74rem;margin-bottom:4px"><span>22h-02h</span><span style="color:var(--muted)">Moyen</span></div><div class="progress-bar-wrap"><div class="progress-bar blue" style="width:52%"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.74rem;margin-bottom:4px"><span>06h-10h</span><span style="color:var(--muted)">Bas</span></div><div class="progress-bar-wrap"><div class="progress-bar green" style="width:28%"></div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🏆 Top Channels par activité</div>
+          <div class="table-wrap">
+            <table>
+              <tr><th>#</th><th>CHANNEL</th><th>MESSAGES</th><th>MEMBRES ACTIFS</th><th>ACTIVITÉ</th></tr>
+              <tr><td style="color:var(--red);font-weight:700">1</td><td>🔥 général</td><td>1,842</td><td>284</td><td><div class="progress-bar-wrap" style="width:120px"><div class="progress-bar" style="width:90%"></div></div></td></tr>
+              <tr><td>2</td><td>🎮 gaming</td><td>934</td><td>156</td><td><div class="progress-bar-wrap" style="width:120px"><div class="progress-bar blue" style="width:55%"></div></div></td></tr>
+              <tr><td>3</td><td>🤖 bot-commands</td><td>721</td><td>98</td><td><div class="progress-bar-wrap" style="width:120px"><div class="progress-bar green" style="width:42%"></div></div></td></tr>
+              <tr><td>4</td><td>🎵 musique</td><td>412</td><td>67</td><td><div class="progress-bar-wrap" style="width:120px"><div class="progress-bar" style="width:24%"></div></div></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🌍 Géographie des membres</div>
+          <div class="card-desc">Répartition par région (basé sur les langues Discord)</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px">
+            <div><div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:5px"><span>🇫🇷 France</span><span style="color:var(--muted)">38%</span></div><div class="progress-bar-wrap"><div class="progress-bar" style="width:38%"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:5px"><span>🇺🇸 États-Unis</span><span style="color:var(--muted)">24%</span></div><div class="progress-bar-wrap"><div class="progress-bar blue" style="width:24%"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:5px"><span>🇩🇪 Allemagne</span><span style="color:var(--muted)">14%</span></div><div class="progress-bar-wrap"><div class="progress-bar green" style="width:14%"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:5px"><span>🌐 Autres</span><span style="color:var(--muted)">24%</span></div><div class="progress-bar-wrap"><div class="progress-bar" style="width:24%;background:#7c3aed"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB: CONSOLE ══ -->
+      <div class="tab-panel" id="tab-console">
+        <div class="panel-title">⌨ Console Prométheus</div>
+        <div class="panel-sub">Interface de commandes avancée — contrôle total via CLI.</div>
+        <div class="console-wrap">
+          <div class="console-output" id="console-output">
+            <div class="c-line"><span class="c-red">█████</span> <span style="color:#333">████</span> <span class="c-red">██████████████</span></div>
+            <div class="c-line c-gray">  Prométheus Console v3.1.0 — Tape 'help' pour la liste des commandes</div>
+            <div class="c-line c-gray">  Session démarrée · Token: ****-****-****-<span class="c-red">XXXX</span></div>
+            <div class="c-line" style="margin-bottom:8px"></div>
+            <div class="c-line"><span class="c-red">prometheus</span><span class="c-gray">@core</span><span class="c-gray">:~$</span> <span class="c-white">help</span></div>
+            <div class="c-line c-gray">Commandes disponibles :</div>
+            <div class="console-help-grid">
+              <div class="console-help-item"><div class="c-cmd">boost &lt;server&gt; [qty]</div><div class="c-help-desc">Applique des boosts sur un serveur</div></div>
+              <div class="console-help-item"><div class="c-cmd">ban &lt;user&gt; [raison]</div><div class="c-help-desc">Bannit un utilisateur</div></div>
+              <div class="console-help-item"><div class="c-cmd">mute &lt;user&gt; &lt;durée&gt;</div><div class="c-help-desc">Mute un utilisateur (ex: 1h, 30m)</div></div>
+              <div class="console-help-item"><div class="c-cmd">purge &lt;channel&gt; &lt;n&gt;</div><div class="c-help-desc">Supprime les n derniers messages</div></div>
+              <div class="console-help-item"><div class="c-cmd">lock [channel]</div><div class="c-help-desc">Verrouille un channel ou le serveur</div></div>
+              <div class="console-help-item"><div class="c-cmd">status</div><div class="c-help-desc">Affiche le statut du système</div></div>
+              <div class="console-help-item"><div class="c-cmd">tokens list</div><div class="c-help-desc">Liste les tokens actifs</div></div>
+              <div class="console-help-item"><div class="c-cmd">automod &lt;on|off&gt;</div><div class="c-help-desc">Active/désactive l'auto-modération</div></div>
+              <div class="console-help-item"><div class="c-cmd">say &lt;channel&gt; &lt;msg&gt;</div><div class="c-help-desc">Envoie un message dans un channel</div></div>
+              <div class="console-help-item"><div class="c-cmd">ping</div><div class="c-help-desc">Teste la latence des serveurs</div></div>
+              <div class="console-help-item"><div class="c-cmd">clear</div><div class="c-help-desc">Vide la console</div></div>
+              <div class="console-help-item"><div class="c-cmd">logout</div><div class="c-help-desc">Déconnecte la session</div></div>
+            </div>
+            <div class="c-line" style="margin-top:10px"></div>
+          </div>
+          <div class="console-input-row">
+            <span class="console-prompt">prometheus@core:~$</span>
+            <input type="text" class="console-input-field" id="console-input" placeholder="Tape une commande..." onkeydown="handleConsole(event)">
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB: NOTIFICATIONS ══ -->
+      <div class="tab-panel" id="tab-notifications">
+        <div class="panel-title">🔔 Notifications</div>
+        <div class="panel-sub">Toutes tes alertes et événements récents.</div>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+            <div class="card-title" style="margin-bottom:0">Récentes</div>
+            <button class="action-btn" style="font-size:0.75rem;padding:5px 10px" onclick="clearNotifs()">✓ Tout lire</button>
+          </div>
+          <div id="notif-list">
+            <div class="notif-item"><div class="notif-dot green"></div><div><div class="notif-text">🚀 <strong>Boost livré</strong> — 14 boosts appliqués sur MyServer en 38ms</div><div class="notif-time">Il y a 2 min</div></div></div>
+            <div class="notif-item"><div class="notif-dot red"></div><div><div class="notif-text">🛡 <strong>Auto-mod</strong> — 1 utilisateur banni automatiquement (anti-raid)</div><div class="notif-time">Il y a 1h</div></div></div>
+            <div class="notif-item"><div class="notif-dot blue"></div><div><div class="notif-text">📊 <strong>Rapport hebdo</strong> — +127 membres cette semaine, +18% d'activité</div><div class="notif-time">Il y a 3h</div></div></div>
+            <div class="notif-item"><div class="notif-dot yellow"></div><div><div class="notif-text">⚠️ <strong>Alerte</strong> — Pic d'activité inhabituel détecté sur #général</div><div class="notif-time">Il y a 6h</div></div></div>
+            <div class="notif-item" style="border:none"><div class="notif-dot green"></div><div><div class="notif-text">✅ <strong>Nitro</strong> — Renouvellement automatique effectué avec succès</div><div class="notif-time">Il y a 1j</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ TAB: SETTINGS ══ -->
+      <div class="tab-panel" id="tab-settings">
+        <div class="panel-title">⚙ Paramètres</div>
+        <div class="panel-sub">Personnalise ton expérience Prométheus.</div>
+        <div class="card">
+          <div class="card-title">👤 Profil</div>
+          <div class="form-row">
+            <div class="field"><label>USERNAME</label><input type="text" id="settings-username" value="User"></div>
+            <div class="field"><label>EMAIL</label><input type="email" placeholder="toi@exemple.com"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>DISCORD TOKEN</label><input type="password" placeholder="••••••••••••••••••••" value="mTk2NjYz..."></div>
+            <div class="field"><label>LANGUE</label><select><option>Français</option><option>English</option><option>Español</option><option>Deutsch</option></select></div>
+          </div>
+          <button class="action-btn primary" onclick="saveSettings()">💾 Sauvegarder</button>
+        </div>
+        <div class="card">
+          <div class="card-title">🔔 Notifications</div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Notifications boost</div><div class="toggle-info-desc">Alerte quand un boost est livré</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Notifications auto-mod</div><div class="toggle-info-desc">Alerte lors des actions automatiques</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Rapport hebdomadaire</div><div class="toggle-info-desc">Résumé d'activité chaque lundi</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Alertes de sécurité</div><div class="toggle-info-desc">Activité suspecte sur le compte</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+        </div>
+        <div class="card">
+          <div class="card-title">🎨 Apparence</div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Mode compact</div><div class="toggle-info-desc">Interface plus dense, moins d'espacement</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+          <div class="toggle-row"><div class="toggle-info"><div class="toggle-info-label">Animations réduites</div><div class="toggle-info-desc">Désactive les animations pour les performances</div></div><label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:#e06060">⚠ Zone de danger</div>
+          <div class="action-btn-row">
+            <button class="action-btn danger" onclick="showToast('Données réinitialisées','error')">🗑 Réinitialiser les données</button>
+            <button class="action-btn danger" onclick="doLogout()">⏻ Déconnexion</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /app-content -->
+  </div><!-- /app-main -->
+</div><!-- /app-layout -->
+</div><!-- /app -->
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-title" id="toast-title"></div>
+  <div id="toast-body" style="font-size:0.78rem;color:var(--muted)"></div>
+</div>
+
 <script>
-  // Scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+// ── State
+let currentUser = 'User';
+let notifCount = 3;
+const tabTitles = { overview:'Vue d\'ensemble', aesthetic:'🎨 Esthétique', moderation:'🛡 Modération', automation:'🤖 Automation', analytics:'📊 Analytics', console:'⌨ Console', notifications:'🔔 Notifications', settings:'⚙ Paramètres' };
 
-  // Modal
-  function openModal(type) {
-    document.getElementById('authModal').classList.add('active');
-    document.getElementById('form-success').style.display = 'none';
-    document.getElementById('modal-form-content').style.display = 'block';
-    switchTab(type);
-  }
-  function closeModal() {
-    document.getElementById('authModal').classList.remove('active');
-  }
-  document.getElementById('authModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
-  function switchTab(tab) {
-    const isLogin = tab === 'login';
-    document.getElementById('modal-title').textContent = isLogin ? 'Welcome Back' : 'Join Prométheus';
-    document.getElementById('modal-sub').textContent = isLogin ? 'Sign in to access your dashboard.' : 'Create your free account in seconds.';
-    document.getElementById('login-form').style.display = isLogin ? 'block' : 'none';
-    document.getElementById('register-form').style.display = isLogin ? 'none' : 'block';
-    document.getElementById('tab-login').className = 'modal-tab' + (isLogin ? ' active' : '');
-    document.getElementById('tab-register').className = 'modal-tab' + (!isLogin ? ' active' : '');
-  }
-  function submitForm() {
-    document.getElementById('modal-form-content').style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
-  }
+// ── Scroll fade-up
+const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), { threshold:0.1 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+document.querySelectorAll('.features-grid .feat-card, .testi-grid .testi-card, .stats-row .stat-card').forEach((el,i) => el.style.transitionDelay = (i*0.08)+'s');
 
-  // FAQ
-  function toggleFaq(el) {
-    const item = el.parentElement;
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
-  }
+// ── Modal
+function openModal(type) {
+  document.getElementById('authModal').classList.add('active');
+  document.getElementById('modal-form-wrap').style.display = 'block';
+  document.getElementById('modal-success').style.display = 'none';
+  switchTab(type);
+}
+function closeModal() { document.getElementById('authModal').classList.remove('active'); }
+document.getElementById('authModal').addEventListener('click', e => { if(e.target.id==='authModal') closeModal(); });
+function switchTab(t) {
+  const isL = t==='login';
+  document.getElementById('modal-title').textContent = isL ? 'Connexion' : 'Inscription';
+  document.getElementById('modal-sub').textContent = isL ? 'Connecte-toi à ton dashboard.' : 'Crée ton compte gratuit en 10 secondes.';
+  document.getElementById('login-form').style.display = isL ? 'block':'none';
+  document.getElementById('register-form').style.display = isL ? 'none':'block';
+  document.getElementById('tab-login').className = 'modal-tab'+(isL?' active':'');
+  document.getElementById('tab-register').className = 'modal-tab'+(!isL?' active':'');
+}
+function doLogin() {
+  const username = document.getElementById('r-user')?.value || document.getElementById('l-email')?.value.split('@')[0] || 'User';
+  currentUser = username || 'User';
+  document.getElementById('modal-form-wrap').style.display = 'none';
+  document.getElementById('modal-success').style.display = 'block';
+  const bar = document.getElementById('login-progress');
+  setTimeout(()=>{ bar.style.width='100%'; }, 100);
+  setTimeout(()=>{
+    closeModal();
+    startBoot();
+  }, 1800);
+}
 
-  // Stagger fade-up
-  document.querySelectorAll('.features-grid .feat-card, .pricing-grid .price-card, .testi-grid .testi-card, .stats-row .stat-card').forEach((el, i) => {
-    el.style.transitionDelay = (i * 0.1) + 's';
-  });
+// ── Boot sequence
+const bootLines = [
+  ['gray','[SYS] Initialisation de Prométheus v3.1.0...'],
+  ['gray','[SYS] Chargement des modules système...'],
+  ['green','[OK]  Module boost — chargé (34ms)'],
+  ['green','[OK]  Module modération — chargé (28ms)'],
+  ['green','[OK]  Module analytics — chargé (41ms)'],
+  ['green','[OK]  Module automation — chargé (22ms)'],
+  ['blue','[NET] Connexion aux serveurs Discord...'],
+  ['blue','[NET] Vérification des tokens...'],
+  ['green','[OK]  33/33 tokens valides'],
+  ['blue','[NET] Proxies connectés (2/2)'],
+  ['green','[OK]  Latence: 38ms — Optimal'],
+  ['red','[PRO] Session démarrée pour: '+currentUser],
+  ['green','[OK]  Dashboard prêt !'],
+];
+function startBoot() {
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('boot-screen').style.display = 'flex';
+  const container = document.getElementById('boot-lines');
+  const bar = document.getElementById('boot-bar');
+  container.innerHTML = '';
+  let i = 0;
+  const total = bootLines.length;
+  function nextLine() {
+    if(i >= total) {
+      setTimeout(launchApp, 400);
+      return;
+    }
+    const [cls, text] = bootLines[i];
+    const div = document.createElement('div');
+    div.className = 'boot-line '+cls;
+    div.textContent = text;
+    div.style.animationDelay = '0s';
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+    bar.style.width = ((i+1)/total*100)+'%';
+    i++;
+    setTimeout(nextLine, 120 + Math.random()*60);
+  }
+  nextLine();
+}
+function launchApp() {
+  document.getElementById('boot-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  // Set user info
+  document.getElementById('sb-username').textContent = currentUser;
+  document.getElementById('welcome-name').textContent = currentUser;
+  document.getElementById('sb-avatar').textContent = currentUser.charAt(0).toUpperCase();
+  document.getElementById('settings-username').value = currentUser;
+  showToast('Bienvenue, '+currentUser+' !','success');
+}
+
+// ── Dashboard tabs
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('tab-'+name);
+  if(panel) panel.classList.add('active');
+  const btn = document.querySelector('[data-tab="'+name+'"]');
+  if(btn) btn.classList.add('active');
+  const titleEl = document.getElementById('topbar-title');
+  if(titleEl) titleEl.textContent = tabTitles[name] || name;
+  if(name==='notifications') clearNotifs();
+}
+function setInnerTab(btn, group) {
+  btn.closest('.inner-tabs').querySelectorAll('.inner-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ── Toast
+let toastTimeout;
+function showToast(title, type='success', body='') {
+  const t = document.getElementById('toast');
+  const ti = document.getElementById('toast-title');
+  const tb = document.getElementById('toast-body');
+  clearTimeout(toastTimeout);
+  t.className = 'toast show '+(type||'');
+  ti.innerHTML = (type==='success'?'✅ ':'❌ ')+title;
+  tb.textContent = body;
+  toastTimeout = setTimeout(()=>{ t.classList.remove('show'); }, 3000);
+}
+
+// ── Notifs
+function clearNotifs() {
+  notifCount = 0;
+  document.getElementById('notif-count').textContent = '0';
+  document.getElementById('notif-badge').style.display = 'none';
+}
+
+// ── Mod actions
+function modAction(action) {
+  const msgs = { ban:'Utilisateur banni avec succès', kick:'Utilisateur expulsé', mute:'Utilisateur réduit au silence', warn:'Avertissement envoyé', lock:'Serveur verrouillé', unlock:'Serveur déverrouillé', slowmode:'Slowmode activé', purge:'Messages supprimés', timeout:'Timeout appliqué', deafen:'Sourd en vocal', move:'Membre déplacé', unban:'Bannissement levé' };
+  const isRed = ['ban','kick','lock','purge'].includes(action);
+  showToast(msgs[action]||action, isRed?'error':'success');
+}
+
+// ── Console
+const consoleCommands = {
+  'help': ()=> consoleOut('Tape une commande. Exemples : boost, ban, status, ping, clear, tokens list', 'blue'),
+  'status': ()=>{ consoleOut('[STATUS] Système: ✅ Opérationnel', 'green'); consoleOut('[STATUS] Tokens: 33/33 actifs', 'green'); consoleOut('[STATUS] Latence: 38ms', 'blue'); consoleOut('[STATUS] Uptime: 99.9%', 'green'); },
+  'ping': ()=> consoleOut('🏓 Pong ! Latence: '+Math.floor(30+Math.random()*20)+'ms', 'green'),
+  'clear': ()=>{ const out = document.getElementById('console-output'); out.innerHTML = '<div class="c-line c-gray">Console réinitialisée.</div>'; },
+  'tokens list': ()=>{ consoleOut('Tokens actifs (33/33) :', 'blue'); for(let i=1;i<=4;i++) consoleOut('  ['+i+'] mTk'+Math.random().toString(36).substr(2,8)+'... ✅ Valide', 'green'); consoleOut('  ... 29 autres tokens actifs', 'gray'); },
+  'logout': ()=>{ consoleOut('Déconnexion en cours...','yellow'); setTimeout(doLogout, 800); },
+};
+function consoleOut(text, cls='white') {
+  const out = document.getElementById('console-output');
+  const d = document.createElement('div');
+  d.className = 'c-line c-'+cls;
+  d.textContent = text;
+  out.appendChild(d);
+  out.scrollTop = out.scrollHeight;
+}
+function handleConsole(e) {
+  if(e.key !== 'Enter') return;
+  const input = document.getElementById('console-input');
+  const cmd = input.value.trim();
+  if(!cmd) return;
+  input.value = '';
+  // Echo command
+  const out = document.getElementById('console-output');
+  const echo = document.createElement('div');
+  echo.className = 'c-line';
+  echo.innerHTML = '<span class="c-red">prometheus@core:~$</span> <span class="c-white">'+escHtml(cmd)+'</span>';
+  out.appendChild(echo);
+  out.scrollTop = out.scrollHeight;
+  // Execute
+  const fn = consoleCommands[cmd.toLowerCase()];
+  if(fn) { fn(); return; }
+  // Dynamic commands
+  const parts = cmd.split(' ');
+  const base = parts[0].toLowerCase();
+  if(base==='boost') {
+    const srv = parts[1]||'<server>';
+    const qty = parts[2]||'1';
+    consoleOut('→ Initialisation boost sur '+srv+' ('+qty+'x)...','gray');
+    setTimeout(()=>{ consoleOut('→ Sélection des tokens...','gray'); setTimeout(()=>{ consoleOut('✅ '+qty+' boost(s) appliqués sur '+srv+' en '+(Math.floor(30+Math.random()*20))+'ms','green'); },400); },300);
+  } else if(base==='ban') {
+    consoleOut('🔨 Bannissement de '+(parts[1]||'<user>')+' en cours...','yellow');
+    setTimeout(()=>consoleOut('✅ Utilisateur banni. Raison: '+(parts.slice(2).join(' ')||'Non spécifiée'),'green'),300);
+  } else if(base==='mute') {
+    consoleOut('🔇 Mute de '+(parts[1]||'<user>')+' pour '+(parts[2]||'1h')+'...','yellow');
+    setTimeout(()=>consoleOut('✅ Mute appliqué.','green'),300);
+  } else if(base==='say') {
+    consoleOut('📢 Message envoyé dans '+(parts[1]||'#général')+' : '+parts.slice(2).join(' '),'green');
+  } else if(base==='automod') {
+    const state = (parts[1]||'on').toLowerCase()==='on';
+    consoleOut((state?'✅ Auto-mod activé':'❌ Auto-mod désactivé'), state?'green':'red');
+  } else if(base==='purge') {
+    consoleOut('🗑 Suppression de '+(parts[2]||'10')+' messages dans '+(parts[1]||'#général')+'...','yellow');
+    setTimeout(()=>consoleOut('✅ Messages supprimés.','green'),400);
+  } else {
+    consoleOut('Commande inconnue: "'+cmd+'". Tape "help" pour la liste.','red');
+  }
+}
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── Misc
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const was = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!was) item.classList.add('open');
+}
+function doLogout() {
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('landing').style.display = 'block';
+  showToast('Déconnecté avec succès','success');
+  setTimeout(()=>window.scrollTo(0,0),100);
+}
+function saveSettings() {
+  const u = document.getElementById('settings-username').value;
+  currentUser = u;
+  document.getElementById('sb-username').textContent = u;
+  document.getElementById('welcome-name').textContent = u;
+  document.getElementById('sb-avatar').textContent = u.charAt(0).toUpperCase();
+  showToast('Paramètres sauvegardés !','success');
+}
 </script>
 </body>
 </html>
