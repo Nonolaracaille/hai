@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width: 1200px;
+  height: 630px;
+  background: #0a0a0a;
+  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Grid background */
+.grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(232,41,28,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,41,28,0.06) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Glow */
+.glow {
+  position: absolute;
+  top: -100px; left: -100px;
+  width: 600px; height: 500px;
+  background: radial-gradient(ellipse, rgba(232,41,28,0.25) 0%, transparent 65%);
+}
+.glow2 {
+  position: absolute;
+  bottom: -80px; right: 200px;
+  width: 400px; height: 400px;
+  background: radial-gradient(ellipse, rgba(232,41,28,0.12) 0%, transparent 65%);
+}
+
+/* Red accent line top */
+.top-line {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #e8291c, #e8291c, transparent);
+}
+
+/* Content */
+.content {
+  position: absolute; inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+  gap: 80px;
+}
+
+/* Left side */
+.left { flex: 0 0 500px; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(232,41,28,0.1);
+  border: 1px solid rgba(232,41,28,0.3);
+  border-radius: 50px;
+  padding: 6px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: #e8291c; letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+.badge-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; }
+
+.logo-row {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 20px;
+}
+.logo-box {
+  width: 52px; height: 52px;
+  background: #e8291c;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; font-weight: 900;
+  box-shadow: 0 0 30px rgba(232,41,28,0.6);
+  color: #fff;
+}
+.logo-name {
+  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+  font-size: 2.2rem; letter-spacing: 3px; color: #fff;
+}
+
+.headline {
+  font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+  font-size: 4.5rem; line-height: 0.92;
+  letter-spacing: 1px; margin-bottom: 20px;
+  color: #fff;
+}
+.headline .red { color: #e8291c; text-shadow: 0 0 40px rgba(232,41,28,0.5); }
+
+.sub {
+  font-family: 'Syne', Arial, sans-serif;
+  font-size: 1.1rem; color: #888; line-height: 1.6;
+  margin-bottom: 28px; font-weight: 400;
+}
+
+.pills { display: flex; gap: 10px; flex-wrap: wrap; }
+.pill {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50px; padding: 6px 14px;
+  font-family: 'Syne', Arial, sans-serif;
+  font-size: 0.82rem; color: #ccc; font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+}
+.pill .dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; }
+
+/* Right side — dashboard mockup */
+.right { flex: 1; }
+.dash-mock {
+  background: #111;
+  border: 1px solid rgba(232,41,28,0.25);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04),
+    0 20px 60px rgba(0,0,0,0.8),
+    0 0 40px rgba(232,41,28,0.12);
+  transform: rotate(1.5deg);
+}
+.mock-bar {
+  background: #0d0d0d;
+  padding: 10px 14px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid rgba(232,41,28,0.15);
+}
+.m-dot { width: 9px; height: 9px; border-radius: 50%; }
+.m-dot.r { background: #e8291c; }
+.m-dot.y { background: #f59e0b; }
+.m-dot.g { background: #22c55e; }
+.mock-title-bar {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: #555; margin-left: 8px;
+}
+
+.mock-body { display: flex; height: 220px; }
+.mock-side {
+  width: 44px; background: #0d0d0d;
+  border-right: 1px solid rgba(255,255,255,0.04);
+  display: flex; flex-direction: column; align-items: center;
+  padding: 12px 0; gap: 14px;
+}
+.ms-icon {
+  width: 24px; height: 24px; background: rgba(255,255,255,0.04);
+  border-radius: 5px; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #555;
+}
+.ms-icon.active { background: rgba(232,41,28,0.2); color: #e8291c; }
+
+.mock-main { flex: 1; padding: 14px; }
+.mock-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 12px; }
+.ms { background: #1a1a1a; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 10px; text-align: center; }
+.ms-num { font-family: 'Bebas Neue', monospace; font-size: 1.3rem; color: #e8291c; }
+.ms-lbl { font-size: 9px; color: #555; font-family: Arial; margin-top: 2px; }
+
+.mock-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mc {
+  background: #1a1a1a; border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px; padding: 10px;
+}
+.mc-title { font-size: 10px; font-weight: 700; font-family: Arial; margin-bottom: 6px; color: #ccc; }
+.mc-bar { height: 4px; background: #222; border-radius: 2px; margin-bottom: 4px; overflow: hidden; }
+.mc-bar-fill { height: 100%; border-radius: 2px; }
+.mc-bar-label { display: flex; justify-content: space-between; font-size: 8px; color: #555; font-family: Arial; }
+
+.mock-actions { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.ma-tile {
+  background: #1a1a1a; border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 6px; padding: 6px 10px;
+  font-family: Arial; font-size: 9px; color: #888;
+  display: flex; align-items: center; gap: 5px;
+}
+.ma-tile.red { border-color: rgba(232,41,28,0.3); color: #e8291c; }
+.ma-tile.green { border-color: rgba(34,197,94,0.3); color: #22c55e; }
+
+/* Bottom bar */
+.bottom-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(232,41,28,0.06);
+  border-top: 1px solid rgba(232,41,28,0.15);
+  padding: 12px 80px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.bb-left { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #555; }
+.bb-right { display: flex; gap: 24px; }
+.bb-stat { text-align: center; }
+.bb-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: #e8291c; }
+.bb-label { font-family: Arial; font-size: 10px; color: #555; }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="glow"></div>
+<div class="glow2"></div>
+<div class="top-line"></div>
+
+<div class="content">
+  <div class="left">
+    <div class="badge"><span class="badge-dot"></span> ALL SYSTEMS OPERATIONAL</div>
+
+    <div class="logo-row">
+      <div class="logo-box">P</div>
+      <div class="logo-name">PROMÉTHEUS</div>
+    </div>
+
+    <div class="headline">
+      <span class="red">Devour</span><br>
+      Your Competition
+    </div>
+
+    <div class="sub">
+      Boosts Discord instantanés · Modération avancée<br>
+      Automation complète · 100% Gratuit
+    </div>
+
+    <div class="pills">
+      <div class="pill"><span class="dot"></span> Livraison 30s</div>
+      <div class="pill"><span class="dot"></span> 24/7 Support</div>
+      <div class="pill"><span class="dot"></span> Free Forever</div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="dash-mock">
+      <div class="mock-bar">
+        <div class="m-dot r"></div>
+        <div class="m-dot y"></div>
+        <div class="m-dot g"></div>
+        <div class="mock-title-bar">Prométheus Dashboard v3.1</div>
+      </div>
+      <div class="mock-body">
+        <div class="mock-side">
+          <div class="ms-icon active">⊞</div>
+          <div class="ms-icon">🎨</div>
+          <div class="ms-icon">🛡</div>
+          <div class="ms-icon">🤖</div>
+          <div class="ms-icon">⌨</div>
+        </div>
+        <div class="mock-main">
+          <div class="mock-stats">
+            <div class="ms"><div class="ms-num">14</div><div class="ms-lbl">BOOSTS</div></div>
+            <div class="ms"><div class="ms-num">32</div><div class="ms-lbl">SERVERS</div></div>
+            <div class="ms"><div class="ms-num">99.9%</div><div class="ms-lbl">UPTIME</div></div>
+            <div class="ms"><div class="ms-num">24/7</div><div class="ms-lbl">SUPPORT</div></div>
+          </div>
+          <div class="mock-cards">
+            <div class="mc">
+              <div class="mc-title">📈 Performance</div>
+              <div class="mc-bar"><div class="mc-bar-fill" style="width:23%;background:#e8291c"></div></div>
+              <div class="mc-bar-label"><span>CPU</span><span>23%</span></div>
+              <div class="mc-bar"><div class="mc-bar-fill" style="width:41%;background:#60a5fa"></div></div>
+              <div class="mc-bar-label"><span>RAM</span><span>41%</span></div>
+              <div class="mc-bar"><div class="mc-bar-fill" style="width:87%;background:#22c55e"></div></div>
+              <div class="mc-bar-label"><span>REQ/s</span><span>87%</span></div>
+            </div>
+            <div class="mc">
+              <div class="mc-title">🔔 Activité récente</div>
+              <div style="font-family:Arial;font-size:9px;color:#666;line-height:1.8">
+                <div><span style="color:#22c55e">●</span> Boost livré · 38ms</div>
+                <div><span style="color:#e8291c">●</span> Ban auto-mod · 1h</div>
+                <div><span style="color:#60a5fa">●</span> +127 membres</div>
+                <div><span style="color:#f59e0b">●</span> Nitro renouvelé</div>
+              </div>
+            </div>
+          </div>
+          <div class="mock-actions">
+            <div class="ma-tile red">🚀 Boost</div>
+            <div class="ma-tile">🎨 Aesthetic</div>
+            <div class="ma-tile red">🛡 Mod</div>
+            <div class="ma-tile green">📊 Stats</div>
+            <div class="ma-tile">⌨ Console</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-bar">
+  <div class="bb-left">prometheus.lol · La plateforme Discord ultime</div>
+  <div class="bb-right">
+    <div class="bb-stat"><div class="bb-num">10K+</div><div class="bb-label">Utilisateurs</div></div>
+    <div class="bb-stat"><div class="bb-num">50K+</div><div class="bb-label">Services</div></div>
+    <div class="bb-stat"><div class="bb-num">FREE</div><div class="bb-label">Pour toujours</div></div>
+  </div>
+</div>
+
+</body>
+</html>
